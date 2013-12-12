@@ -60,7 +60,7 @@
                 returnedNodes = [];
 
             if (content instanceof HTMLElement) {
-                return content;
+                return [content];
             } else {
                 _htmlDivElement.innerHTML = content;
                 childNodes = _htmlDivElement.childNodes;
@@ -201,7 +201,7 @@
 
             for (var i = 0; i < this.length; i++) {
                 for (var j = 0, jLen = content.length; j < jLen; j++) {
-                    this[i].parentNode.insertBefore(content[j], this[i]);
+                    this[i].parentNode.insertBefore(content[j].cloneNode(true), this[i]);
                 }
             }
         },
@@ -214,13 +214,12 @@
 
             for (var i = 0; i < this.length; i++) {
                 successor = _core.get_sibling(this[i], true);
-                /* Bug - gotta fix parse method since contens' node are being moved around the DOM when iterating on all collection items */
 
                 for (var j = 0, jLen = content.length; j < jLen; j++) {
                     if (successor) {
-                        this[i].parentNode.insertBefore(content[j], successor);
+                        this[i].parentNode.insertBefore(content[j].cloneNode(true), successor);
                     } else {
-                        this[i].parentNode.appendChild(content[j]);
+                        this[i].parentNode.appendChild(content[j].cloneNode(true));
                     }
                 }
             }
