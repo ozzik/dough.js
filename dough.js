@@ -83,12 +83,29 @@
             }
 
             return sibling;
+        },
+
+        /* Inserts an HTTP parameter and its value to a given string */
+        add_http_parameter: function(data, parameter, value) {
+            return (data ? data + "&" : "") + parameter + "=" + value;
+        },
+
+        /* Creates an HTTP parameters string based on a given parameters object */
+        generate_http_parameters: function(data) {
+            var dataKeys = Object.keys(data),
+                params = "";
+
+            for (var i = 0, len = dataKeys.length; i < len; i++) {
+                params = _core.add_http_parameter(params, dataKeys[i], data[dataKeys[i]]);
+            }
+
+            return params;
         }
 	};
 
     // Logging and such
-    function log(str) {
-        str += " god damned it!";
+    function log(str, isBadUsage) {
+        str += (isBadUsage) ? " god damned it!" : "";
         console.warn ? console.warn(str) : console.log(str);
     }
 
@@ -316,8 +333,68 @@
     }
 
     // Static methods
-    doughFn.ajax = function() {};
-    doughFn.jsonp = function() {};
+    /* Performs an asynchronus HTTP request */
+    doughFn.ajax = function(params) {
+        var midget = new XMLHttpRequest(),
+            data = "",
+            isJSON = (params.contentType === undefined || params.contentType === "application/json");
+
+        params.type = params.type.toLowerCase();
+        params.contentType = (isJSON) ? "application/json" : params.contentType; // Setting deafult to JSON
+        params.contentType = (params.type !== "get") ? "application/x-www-form-urlencoded" : params.contentType;
+        params.charset = (params.charset) ? params.charset : "UTF-8";
+
+        midget.open(params.type, params.url, true);
+        midget.setRequestHeader("Content-Type", params.contentType + ";charset=" + params.charset);
+
+        midget.onreadystatechange = function() {
+            if (midget.readyState === 4) {
+                if (midget.status === 200) {
+                    var json;
+
+                    if (isJSON) {
+                        try {
+                            json = JSON.parse(midget.responseText);
+                        } catch (e) {
+                            params.parseError ? params.parseError(midget.status) : log("Dough JSON parsing error: " + e.name + " - " + e.message + ". You should handle this error with a .parseError method", true);
+                            return;
+                        }
+                    }
+
+                    params.success((isJSON) ? json : midget.responseText); // Success
+                } else {
+                    params.error ? params.error(midget.status) : log("Dough AJAX error: Returned " + midget.status + ". You should handle this error with a .error method", true);
+                }
+            }
+        };
+
+        if (typeof params.data === "object" && params.type !== "get") {
+            data = _core.generate_http_parameters(params.data);
+        }
+
+        midget.send(data);
+    };
+    // Programmatically creating HTTP-matching methods
+    var httpMethods = ["get", "post", "put", "delete"];
+
+    for (var i = 0, len = httpMethods.length; i < len; i++) {
+        (function(method) {
+            doughFn[method] = function(params) {
+                params.type = method;
+                doughFn.ajax(params);
+            };
+        })(httpMethods[i]);
+    }
+
+    /* Performs a cross-site request by injecting the request as a script */
+    doughFn.jsonp = function(params) {
+        var script = document.createElement("script");
+
+        script.src = params.url + "?" + (params.callbackParam ? params.callbackParam : "callback") + "=" + params.callback + (params.data ? "&" + _core.generate_http_parameters(params.data) : "");
+        script.type = "text/javascript";
+
+        document.head.appendChild(script);
+    };
 
 	// Trigger function ($)
 	function doughFn(selector) {
