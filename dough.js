@@ -401,5 +401,6 @@
 		return _core.find(selector);
 	}
 
-	window['$'] = doughFn;
+	window['$'] = (!window['$']) ? doughFn : window['$'];
+    window['Dough'] = doughFn;
 })(window);
