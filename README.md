@@ -19,7 +19,7 @@ Parameters:
 
 Matches elements in the DOM with the given selector string or wraps the a given DOM element object in a Dough object. Either returns a Dough object.
 
-```
+```javascript
 $("a"); // CSS selector
 
 
@@ -37,7 +37,7 @@ Parameters:
 
 Adds one or more CSS selector classes to every element in the collection.
 
-```
+```javascript
 $("a").addClass("sugar-free carbon-free");
 ```
 
@@ -48,7 +48,7 @@ Parameters:
 
 Removes one or more CSS selector classes from every element in the collection.
 
-```
+```javascript
 $("a").toggleClass("sugar carbon");
 ```
 
@@ -59,7 +59,7 @@ Parameters:
 
 Adds or removes one or more CSS selector classes from every element in the collection, according to its presence.
 
-```
+```javascript
 $("a").toggleClass("diet zero");
 ```
 
@@ -70,6 +70,6 @@ Parameters:
 
 Determines whether the first element in the collection has one or more CSS selector classes.
 
-```
+```javascript
 $("a").hasClass("light lite");
 ```
