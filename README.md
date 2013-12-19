@@ -15,13 +15,12 @@ Also, executing Dough queries in the Browser console returns an object and not a
 
 Parameters:
 
-* `selector` - String of a CSS selector, DOM element(s) object or an array of DOM element objects.
+* `selector` - (string) CSS selector, (object) DOM element(s) or an array of DOM element objects.
 
-Matches elements in the DOM with the given selector string or wraps the a given DOM element object in a Dough object. Either returns a Dough object.
+Matches elements in the DOM with the given selector string or wraps the a given DOM element object in a Dough object. Either way, returns a Dough object.
 
 ```javascript
 $("a"); // CSS selector
-
 
 element.addEventListener("click", function(this) {
   var me = $(this); // Dom element
@@ -33,9 +32,10 @@ $(document.querySelectorAll("a")); // Dom elements
 ### addClass(classes)
 
 Parameters:
-* `classes` - String of a CSS selector class(es).
+* `classes` - (string) CSS selector class(es).
 
 Adds one or more CSS selector classes to every element in the collection.
+Returns the same Dough object for further method chaining.
 
 ```javascript
 $("a").addClass("sugar-free carbon-free");
@@ -44,9 +44,10 @@ $("a").addClass("sugar-free carbon-free");
 ### removeClass(classes)
 
 Parameters:
-* `classes` - String of a CSS selector class(es).
+* `classes` - (string) CSS selector class(es).
 
 Removes one or more CSS selector classes from every element in the collection.
+Returns the same Dough object for further method chaining.
 
 ```javascript
 $("a").toggleClass("sugar carbon");
@@ -55,9 +56,10 @@ $("a").toggleClass("sugar carbon");
 ### removeClass(classes)
 
 Parameters:
-* `classes` - String of a CSS selector class(es).
+* `classes` - (string) CSS selector class(es).
 
 Adds or removes one or more CSS selector classes from every element in the collection, according to its presence.
+Returns the same Dough object for further method chaining.
 
 ```javascript
 $("a").toggleClass("diet zero");
@@ -66,10 +68,30 @@ $("a").toggleClass("diet zero");
 ### hasClass(classes)
 
 Parameters:
-* `classes` - String of a CSS selector class(es).
+* `classes` - (string) CSS selector class(es).
 
-Determines whether the first element in the collection has one or more CSS selector classes.
+Determines whether the first element in the collection has one or more CSS selector classes. Returns a boolean value for the presence of the CSS selector class(es).
 
 ```javascript
 $("a").hasClass("light lite");
+```
+
+### css(styles, [value])
+
+Parameters:
+* `styles` - (object) Key-value pairs of CSS properties and their matching values, or (string) the name of a specific CSS property name.
+* `value` - (string) Value for a specific CSS property (when `styles` is a property name).
+
+Sets or removes inline styling for every element in the collection, based on the given parameters. **Notice**: When `styles` is the name of a single CSS property and no `value` is defined - the method will **remove** that property and **won't return the value of that property** (for reteriving the value, use `$("a")[0].styles.color`).
+
+```javascript
+$("a").css("color", "mileycyrus"); // Specific property
+
+$("a").css({
+  "color", "selenagomez",
+  "letterSpacing": "1.5em"
+}); // Multiple properties
+
+$("a").css("color"); // Removes property
+
 ```
