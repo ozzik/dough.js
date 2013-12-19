@@ -192,6 +192,8 @@
 					this[i].removeAttribute("style");
 				}
 			}
+
+            return this;
 		},
 
 		/* ==== Structure methods ==== */
@@ -201,6 +203,8 @@
 			for (var i = 0; i < this.length; i++) {
 				this[i][(value ? "set" : "remove") + "Attribute"](name, value);
 			}
+
+            return this;
 		},
 
 		/* Sets the HTML contents of collection's elements */
@@ -213,6 +217,8 @@
 			for (var i = 0; i < this.length; i++) {
 				this[i].innerHTML = value;
 			}
+
+            return this;
 		},
 
 		/* Appends an element before every element in the collection */
@@ -224,6 +230,8 @@
 					this[i].parentNode.insertBefore(content[j].cloneNode(true), this[i]);
 				}
 			}
+
+            return this;
 		},
 
 		/* Appends an element before every element in the collection */
@@ -243,6 +251,8 @@
 					}
 				}
 			}
+
+            return this;
 		},
 
 		/* ==== Events methods ==== */
@@ -261,6 +271,8 @@
 				// Fuck IE8-
 				this[i].addEventListener(event, fn, options && options.isCapture);
 			}
+
+            return this;
 		},
 
 		/* Removes previously set-up event function from an element */
@@ -273,6 +285,8 @@
 					delete _listeners[this[i]._crumb][event];
 				}
 			}
+
+            return this;
 		},
 
 		/* Invokes attached function to an element's event */
@@ -282,6 +296,8 @@
 					_listeners[this[i]._crumb][event]();
 				}
 			}
+
+            return this;
 		},
 
 		/* ==== Collection methods ==== */

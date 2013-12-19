@@ -33,8 +33,7 @@ $(document.querySelectorAll("a")); // Dom elements
 Parameters:
 * `classes` - (string) CSS selector class(es).
 
-Adds one or more CSS selector classes to every element in the collection.
-Returns the same Dough object for further method chaining.
+Adds one or more CSS selector classes to every element in the collection. Returns the same Dough object for further method chaining.
 
 ```javascript
 $("a").addClass("sugar-free carbon-free");
@@ -187,7 +186,7 @@ Parameters:
 * `fn` - (function) Method to execute when event is triggered.
 * `options` - (object) Key-value pairs of event options.
 
-Attaches an event-handling method for every element in the collection. Supported options are `isCaptured` for creating an event listener using the capture event processing. **Notice**: `on()` will detach any previously set event handlers configured by `on()`.
+Attaches an event-handling method for every element in the collection. Supported options are `isCaptured` for creating an event listener using the capture event processing. Returns the same Dough object for further method chaining. **Notice**: `on()` will detach any previously set event handlers configured by `on()`.
 
 ```javascript
 $(".button-heavy").on("click", function() {
@@ -200,7 +199,7 @@ $(".button-heavy").on("click", function() {
 Parameters:
 * `event` - (string) Name of event to detach its event handler.
 
-Detaches a previously set event-handling method from every element in the collection.
+Detaches a previously set event-handling method from every element in the collection. Returns the same Dough object for further method chaining.
 
 ```javascript
 $(".super-form").off("submit");
@@ -211,10 +210,25 @@ $(".super-form").off("submit");
 Parameters:
 * `event` - (string) Name of event to invoke its event handler.
 
-Invokes a previously set event-handling method for every element in the collection.
+Invokes a previously set event-handling method for every element in the collection. Returns the same Dough object for further method chaining.
 
 ```javascript
 $(".button-heavy").trigger("click");
+```
+
+### each(*fn*);
+
+Parameters:
+* `fn` - (function) Function to invoke on every element.
+
+Invokes a given function on every element in the collection. The function is provided with the element as a DOM element object.
+
+```javascript
+var rainbow = "";
+$(".button-shiny").each(function(element) {
+	rainbow += element.getAttribute("data-color");
+});
+console.log("pretty colors: " + rainbow + "!");
 ```
 
 ### ajax(*options*);
