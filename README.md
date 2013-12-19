@@ -183,9 +183,9 @@ $(".my-li").previous().addClass("queen");
 ### on(*event*, *fn*, [*options*])
 
 Parameters:
-* (string) Name of event to attach the method to.
-* (function) Method to execute when event is triggered.
-* (object) Key-value pairs of events properties.
+* `event` - (string) Name of event to attach the method to.
+* `fn` - (function) Method to execute when event is triggered.
+* `options` - (object) Key-value pairs of event options.
 
 Attaches an event-handling method for every element in the collection. Supported options are `isCaptured` for creating an event listener using the capture event processing. **Notice**: `on()` will detach any previously set event handlers configured by `on()`.
 
@@ -198,7 +198,7 @@ $(".button-heavy").on("click", function() {
 ### off(*event*);
 
 Parameters:
-* (string) Name of event to detach its event handler.
+* `event` - (string) Name of event to detach its event handler.
 
 Detaches a previously set event-handling method from every element in the collection.
 
@@ -209,10 +209,151 @@ $(".super-form").off("submit");
 ### trigger(*event*);
 
 Parameters:
-* (string) Name of event to invoke its event handler.
+* `event` - (string) Name of event to invoke its event handler.
 
 Invokes a previously set event-handling method for every element in the collection.
 
 ```javascript
 $(".button-heavy").trigger("click");
+```
+
+### ajax(*options*);
+
+Parameters:
+* `options` - (object) Key-value pairs of request options.
+
+Performs an AJAX request using the given options.
+
+Properties:
+* `type` - (string) HTTP request method: "GET" or "POST" (case-insensitive).
+* `url` - (string) URL to send the request to.
+* `contentType` - (string) The type of data sent to the server (as HTTP Content-Type header), such as `application/json` (default: `application/json` for `GET` requests and `application/x-www-form-urlencoded` for `POST`).
+* `charset` - (string) Request encoding (default: `UTF-8`).
+* `data` - (object) Key-value pairs of properties and their values to post to the server (also good for GET requests).
+* `success` - (function) Function to invoke upon request success. The function is provided with the response data as its argument (when using `application/json` content type, the data is already provided as a parsed object).
+* `error` - (function) Function to invoke upon request error. The function is provided with request HTTP status code as its argument.
+* `parseError` - (function) Function to invoke upon JSON parsing error (when using `application/json` content type). The function is provided with the exception object as its argument.
+
+```javascript
+$.ajax({
+	type: "get",
+	url: "http://my.self/api/songs",
+	data: { artist: "Selena Gomez" },
+	success: function(data) {
+		alert("I've got " + data.length + " songs in my library, damn!");	
+	},
+	parseError: function(e) {
+		console.log("do I want to handle parse error?", e);
+	},
+	error: function(status) {
+		if (status === 500) {
+			alert("Oopsy");
+		} else if (status === 404) {
+			alert("Daisy");
+		}
+	}
+});
+```
+
+### get(*options*);
+
+Parameters:
+* `options` - (object) Key-value pairs of request options.
+
+Performs an AJAX GET request using the given options.
+
+(See `ajax()` method options for reference)
+
+```javascript
+$.get({
+	url: "http://my.self/api/songs",
+	data: { artist: "Selena Gomez" },
+	success: function(data) {
+		alert("I've got " + data.length + " songs in my library, damn!");	
+	}
+});
+```
+
+### post(*options*);
+
+Parameters:
+* `options` - (object) Key-value pairs of request options.
+
+Performs an AJAX POST request using the given options.
+
+(See `ajax()` method options for reference)
+
+```javascript
+$.post({
+	url: "http://my.self/api/artist/create",
+	data: {
+		name: "Miley Cyrus",
+		image: "http://mileycyrus.com/me.jpg"
+	},
+	success: function(data) {
+		// Great success!
+	}
+});
+```
+
+### put(*options*);
+
+Parameters:
+* `options` - (object) Key-value pairs of request options.
+
+Performs an AJAX PUT request using the given options.
+
+(See `ajax()` method options for reference)
+
+```javascript
+$.put({
+	url: "http://my.self/api/artist/modify",
+	data: {
+		identifier: "miley-cyrus",
+		image: "http://mileycyrus.com/me-wrecking-ball.jpg"
+	},
+	success: function(data) {
+		// Great success!
+	}
+});
+```
+
+### delete(*options*);
+
+Parameters:
+* `options` - (object) Key-value pairs of request options.
+
+Performs an AJAX DELETE request using the given options.
+
+(See `ajax()` method options for reference)
+
+```javascript
+$.delete({
+	url: "http://my.self/api/artist/modify",
+	data: { identifier: "hannah-montana" },
+	success: function(data) {
+		// Great success!
+	}
+});
+```
+
+### jsonp(*options*);
+
+Parameters:
+* `options` - (object) Key-value pairs of request options.
+
+Performs a cross-domain request using JSONP.
+
+Properties:
+* `url` - (string) URL to send the request to.
+* `callback` - (string) Name of callback function.
+* `callbackParam` - (string) The name of the callback parameter in the URL (default: `callback`);
+* `data` - (object) Key-value pairs of properties and their values to send to the server.
+
+```javascript
+$.jsonp({
+	url: "http://my.self/api/albums",
+	data: { order: "desc" },
+	callback: "albums_callback"
+});
 ```
