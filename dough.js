@@ -39,8 +39,9 @@
         return dough;
     }
 
-    function _each(e, fn, args) {
-        for (var i = 0; i < e.length; i++) {
+    /* Performs a method on the collection or on a given element within it */
+    function _each(e, fn, index, args) {
+		for (var i = index || 0, len = (index !== undefined ? index + 1 : e.length); i < len; i++) {
             fn(e[i], args);
         }
     }
@@ -48,14 +49,14 @@
     /* ==== CSS-related methods ==== */
     /* Mingles with the CSS selector class(es) of every element in the collection */
     /* Fallback method is defined later on */
-    function _edit_classes(e, action, classes) {
+    function _edit_classes(e, action, classes, index) {
         classes = classes.split(" ");
 
-        for (var i = 0; i < e.length; i++) {
-            for (var j = 0, jLen = classes.length; j < jLen; j++) {
-                e[i].classList[action](classes[j]);
-            }
-        }
+        _each(e, function(e) {
+			for (var i = 0, len = classes.length; i < len; i++) {
+				e.classList[action](classes[i]);
+			}
+        }, index);
     }
 
     /* Parses a given HTML string to DOM elements */
@@ -87,6 +88,21 @@
         }
 
         return sibling;
+    }
+
+    /* Adds an event listener to a given element */
+    function _attach_listener(e, event, fn, options) {
+		// Attaching a unique identifier for the element + saving its function
+		if (!e._crumb) {
+			e._crumb = _crumbs++;
+		} else if (_listeners[e._crumb][event]) { // Removing already defined event listener
+			Dough.prototype.off.apply(this, [event]);
+		}
+		_listeners[e._crumb] = _listeners[e._crumb] || {};
+		_listeners[e._crumb][event] = fn;
+
+		// Fuck IE8-
+		e.addEventListener(event, fn, options && options.isCapture);
     }
 
     /* Inserts an HTTP parameter and its value to a given string */
@@ -150,23 +166,23 @@
 
 		/* ==== Style methods ==== */
 		/* Adds a CSS selector class(es) to the collection's elements */
-		addClass: function(classes) {
-			_edit_classes(this, "add", classes.trim());
+		addClass: function(classes, index) {
+			_edit_classes(this, "add", classes.trim(), index);
 
 			return this;
 		},
 
 		/* Removes a CSS selector class(es) from the collection's elements */
-		removeClass: function(classes) {
-			_edit_classes(this, "remove", classes.trim());
+		removeClass: function(classes, index) {
+			_edit_classes(this, "remove", classes.trim(), index);
 
 			return this;
 		},
 
 		/* Adds/removes a CSS selector class(es) from/to collection's elements */
-		toggleClass: function(classes, isAdd) {
+		toggleClass: function(classes, isAdd, index) {
 		    var action = (isAdd === undefined) ? "toggle" : (isAdd ? "add" : "remove");
-		    _edit_classes(this, action, classes.trim());
+		    _edit_classes(this, action, classes.trim(), index);
 
 		    return this;
 		},
@@ -186,159 +202,152 @@
 
 		/* Sets inline styling to the collection's elements */
 		/* Invoking the method without any arguments clears all inline styling */
-		css: function(styles, value) {
+		css: function(styles, value, index) {
 			var properties = [];
 
 			// Prettifying styles object
 			if (typeof styles === "object") {
 				properties = Object.keys(styles);
+				index = value; // Optional
 			} else {
 				properties = [styles];
 				styles = {};
 				styles[properties[0]] = value ? value : "";
 			}
 
-			for (var i = 0; i < this.length; i++) {
-				for (var j = 0, jLen = properties['length']; j < jLen; j++) {
-					this[i].style[properties[j]] = styles[properties[j]];
+			_each(this, function(e) {
+				for (var i = 0, len = properties['length']; i < len; i++) {
+					e.style[properties[i]] = styles[properties[i]];
 				}
 
 				if (!styles) {
-					this[i].removeAttribute("style");
+					e.removeAttribute("style");
 				}
-			}
+			}, index);
 
             return this;
 		},
 
 		/* Sets the CSS transform property of the collection's elements */
-		transform: function(transformFn) {
-		    for (var i = 0; i < this.length; i++) {
-		        this[i].style[_renderEngine + "Transform"] = transformFn;
-		    }
+		transform: function(transformFn, index) {
+		    _each(this, function(e) {
+		        e.style[_renderEngine + "Transform"] = transformFn;
+		    }, index);
 		},
 
 		/* Sets a CSS translate3d method to the collection's elements */
-		translate: function(x, y, z) {
-		    for (var i = 0; i < this.length; i++) {
-		        this[i].style[_renderEngine + "Transform"] = "translate3d(" + (x || 0) + "px," + (y || 0) + "px," + (z || 0) + "px)";
-		    }
+		translate: function(x, y, z, index) {
+		    _each(this, function(e) {
+		        e.style[_renderEngine + "Transform"] = "translate3d(" + (x || 0) + "px," + (y || 0) + "px," + (z || 0) + "px)";
+		    }, index);
 		},
 
 		/* Removes a CSS translate3d method from the collection's elements */
-		reset_translate: function() {
-		    for (var i = 0; i < this.length; i++) {
-		        this[i].style[_renderEngine + "Transform"] = "";
-		    }
+		reset_translate: function(index) {
+		    _each(this, function(e) {
+		        e.style[_renderEngine + "Transform"] = "";
+		    }, index);
 		},
 
 		/* ==== Structure methods ==== */
 		/* Sets or removes an attribute to/from collection's elements */
 		/* (Notice: not passing a value will trigger removal of the attribute) */
-		attr: function(name, value) {
-			for (var i = 0; i < this.length; i++) {
-				this[i][(value ? "set" : "remove") + "Attribute"](name, value);
-			}
+		attr: function(name, value, index) {
+			_each(this, function(e) {
+				e[(value !== undefined ? "set" : "remove") + "Attribute"](name, value);
+			}, index);
 
             return this;
 		},
 
 		/* Sets the HTML contents of collection's elements */
-		html: function(value) {
+		html: function(value, index) {
 			if (value === undefined) {
 				log("Use .innerHTML", true);
 				return;
 			}
 			
-			for (var i = 0; i < this.length; i++) {
-				this[i].innerHTML = value;
-			}
+			_each(this, function(e) {
+				e.innerHTML = value;
+			}, index);
 
             return this;
 		},
 
 		/* Appends an element before every element in the collection */
-		before: function(content) {
+		before: function(content, index) {
 			content = _parse_content(content);
 
-			for (var i = 0; i < this.length; i++) {
-				for (var j = 0, jLen = content.length; j < jLen; j++) {
-					this[i].parentNode.insertBefore(content[j].cloneNode(true), this[i]);
+			_each(this, function(e) {
+				for (var i = 0, len = content.length; i < len; i++) {
+					e.parentNode.insertBefore(content[i].cloneNode(true), e);
 				}
-			}
+			}, index);
 
             return this;
 		},
 
 		/* Appends an element before every element in the collection */
-		after: function(content) {
+		after: function(content, index) {
 			var successor;
 
 			content = _parse_content(content);
 
-			for (var i = 0; i < this.length; i++) {
-				successor = _get_sibling(this[i], true);
+			_each(this, function(e) {
+				successor = _get_sibling(e, true);
 
-				for (var j = 0, jLen = content.length; j < jLen; j++) {
+				for (var i = 0, len = content.length; i < len; i++) {
 					if (successor) {
-						this[i].parentNode.insertBefore(content[j].cloneNode(true), successor);
+						e.parentNode.insertBefore(content[i].cloneNode(true), successor);
 					} else {
-						this[i].parentNode.appendChild(content[j].cloneNode(true));
+						e.parentNode.appendChild(content[i].cloneNode(true));
 					}
 				}
-			}
+			}, index);
 
             return this;
 		},
 
 		/* ==== Events methods ==== */
 		/* Sets a function to be executed on an element's event */
-		on: function(event, fn, options) {
-			for (var i = 0; i < this.length; i++) {
-				// Attaching a unique identifier for the element + saving its function
-				if (!this[i]._crumb) {
-					this[i]._crumb = _crumbs++;
-				} else if (_listeners[this[i]._crumb][event]) { // Removing already defined event listener
-					Dough.prototype.off.apply(this, [event]);
-				}
-				_listeners[this[i]._crumb] = _listeners[this[i]._crumb] || {};
-				_listeners[this[i]._crumb][event] = fn;
+		on: function(event, fn, options, index) {
+			index = (typeof options !== "object") ? options : index; // Optional
 
-				// Fuck IE8-
-				this[i].addEventListener(event, fn, options && options.isCapture);
-			}
+			_each(this, function(e) {
+				_attach_listener(e, event, fn, options);
+			}, index);
 
             return this;
 		},
 
 		/* Removes previously set-up event function from an element */
-		off: function(event) {
-			for (var i = 0; i < this.length; i++) {
-				if (this[i]._crumb && _listeners[this[i]._crumb][event]) {
+		off: function(event, index) {
+			_each(this, function(e) {
+				if (e._crumb && _listeners[e._crumb][event]) {
 					// Fuck IE8-
-					this[i].removeEventListener(event, _listeners[this[i]._crumb][event]);
+					e.removeEventListener(event, _listeners[e._crumb][event]);
 
-					delete _listeners[this[i]._crumb][event];
+					delete _listeners[e._crumb][event];
 				}
-			}
+			}, index);
 
             return this;
 		},
 
 		/* Invokes attached function to an element's event */
-		trigger: function(event) {
-			for (var i = 0; i < this.length; i++) {
+		trigger: function(event, index) {
+			_each(this, function(e) {
 				if (this[i]._crumb && _listeners[this[i]._crumb][event]) {
 					_listeners[this[i]._crumb][event]();
 				}
-			}
+			}, index);
 
             return this;
 		},
 
 		/* ==== Action methods ==== */
 		/* Creates a click/tap event listener */
-		click: function(fn) {
+		click: function(fn, index) {
 		    this.on(_eventPointerStart, function(e) {
 		        e.preventDefault();
 
@@ -349,7 +358,7 @@
 		        this._isPointerDown = true;
 
 		        this._$e.addClass("pressed");
-		    });
+		    }, index);
 
 		    this.on(_eventPointerMove, function(e) {
 		        if (!this._isPointerDown) { return; }
@@ -358,10 +367,10 @@
 		            y = (_isTouch) ? e.touches[0].pageY : e.pageY;
 
 		        this._didMove = (Math.abs(x - this._startX) >= 10) || (Math.abs(y - this._startY) >= 10);
-		        if (this._didMove) {
+		        if (this._didMove && this._$e) {
 		            this._$e.removeClass("pressed");
 		        }
-		    });
+		    }, index);
 
 		    this.on(_eventPointerEnd, function(e) {
 		        this._isPointerDown = false;
@@ -371,7 +380,7 @@
 
 		            fn(this._$e);
 		        }
-		    });
+		    }, index);
 
 		    return this;
 		},
@@ -389,7 +398,7 @@
 
 	// Conditional methods
 	// No support for classList API -> using regex fallback
-	if (document.body['classList']) {
+	if (!document.body['classList']) {
 		_edit_classes = function(e, action, classes) {
 			var regex,
 				hasClass;
