@@ -6,13 +6,20 @@
 	function Dough() {}
 
 	/* ==== Private shenanigans ==== */
+	// Events
 	var _listeners = {}, // Saved event listeners methods
 	    _crumbs = 1, // Unique ID index (given to every DOM element for identifying it in listeners object)
-	    _htmlDivElement = document.createElement("div"), // Dummy div element for HTML creation
-	    _renderEngine,
 	    _eventPointerStart,
 	    _eventPointerMove,
 	    _eventPointerEnd;
+	// Transitions
+	var _transitions = {}, // Queued transition callback data for transition end events
+		_transitionProperties = {}, // Names of queued transition properties
+		_tCrumbs = 1, // Unique ID for transitions
+	    _didSetupTransitionEnd,
+	    _renderEngine;
+	// Others
+	var _htmlDivElement = document.createElement("div"); // Dummy div element for HTML creation
 
 	/* ==== Core methods ==== */
     /* Retrieves elements from DOM into a Dough object  */
@@ -140,6 +147,38 @@
         }
 
         return value;
+    }
+
+    /* Prettifies a given CSS property name according with possible required vendor prefix */
+    function _synthasize_property(property) {
+        if (property === "transform") {
+            return "-" + _renderEngine + "-transform";
+        } else {
+            return property;
+        }
+    }
+
+    /* Attaches an event listener for handling the finish of a CSS transition */
+    function _setup_transition_end_listener() {
+		document.body.addEventListener($.engine + "TransitionEnd", function(e) {
+		    if (!_transitionProperties[e.propertyName]) { return; } // Property that wasn't selected for detection
+
+		    // Finding queued transition
+		    var transition = _transitions[e.target._tCrumb];
+		    if (!transition) { return; }
+
+		    transition.finished++;
+
+		    if (transition.finished == transition.required) {
+		        // Marking transition as completed
+		        delete _transitions[e.target._tCrumb];
+		        _transitionProperties[e.property]--;
+
+		        transition.callback && transition.callback();
+		    }
+		});
+
+		_didSetupTransitionEnd = true;
     }
 
 	/* ==== Exposed thingies ==== */
@@ -545,6 +584,39 @@
 		script.type = "text/javascript";
 
 		document.head.appendChild(script);
+	};
+
+	/* Sets a method to be executed upon the finish of a CSS transition */
+	doughFn.transitionEnd = function(property, items, callback) {
+		// Setting up transition end handling method
+		!_didSetupTransitionEnd && _setup_transition_end_listener();
+
+		// Actual callback
+		property = _synthasize_property(property);
+
+		_tCrumbs++;
+		var transition = {
+		    id: _tCrumbs,
+		    finished: 0,
+		    required: items.length || 1,
+		    callback: callback
+		};
+		
+		// Marking items
+		if (!items.length) {
+		    items._tCrumb = _tCrumbs;
+		} else {
+		    for (var i = 0; i < items.length; i++) {
+		        items[i]._tCrumb = _tCrumbs;
+		    }
+		}
+		
+		_transitions[_tCrumbs] = transition;
+
+		if (!_transitionProperties[property]) {
+		    _transitionProperties[property] = 0;
+		}
+		_transitionProperties[property]++;
 	};
 
 	// Trigger function ($)
