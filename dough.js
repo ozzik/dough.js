@@ -220,7 +220,14 @@
 
 		/* Adds/removes a CSS selector class(es) from/to collection's elements */
 		toggleClass: function(classes, isAdd, index) {
-		    var action = (isAdd === undefined) ? "toggle" : (isAdd ? "add" : "remove");
+		    var action = "toggle";
+
+		    if (typeof isAdd === "boolean") {
+		    	action = (isAdd) ? "add" : "remove";
+		    } else {
+		    	index = isAdd;
+		    }
+
 		    _edit_classes(this, action, classes.trim(), index);
 
 		    return this;
