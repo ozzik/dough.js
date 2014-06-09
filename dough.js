@@ -233,14 +233,15 @@
 		    return this;
 		},
 
-		/* Determines whether an element has a given CSS selector class(es) */
-		/* (validates only against the first element in the collection) */
-		hasClass: function(classes) {
+		/* Determines whether every element in the collection has a given CSS selector class(es) */
+		hasClass: function(classes, index) {
 			var hasClass = true;
 			classes = classes.split(" ");
 
-			for (var i = 0, len = classes.length; i < len && hasClass; i++) {
-				hasClass = hasClass && this[0].classList.contains(classes[i]);
+			for (var i = index || 0, len = (index !== undefined ? index + 1 : this.length); i < len; i++) {
+				for (var j = 0, jLen = classes.length; j < jLen && hasClass; j++) {
+					hasClass = hasClass && this[i].classList.contains(classes[j]);
+				}
 			}
 
 			return hasClass;
