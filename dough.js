@@ -545,19 +545,20 @@
         midget.send(data);
     };
 	// Programmatically creating HTTP-matching methods
-	var httpMethods = ["get", "post", "put", "delete"];
+	var httpMethods = ["get", "post", "put", "delete"],
+        httpMethodNames = ["get", "post", "put", "del"];
 
 	for (var i = 0, len = httpMethods.length; i < len; i++) {
-		(function(method) {
-			doughFn[method] = function(options) {
+		(function(name, method) {
+			doughFn[name] = function(options) {
 				options.type = method;
 				doughFn.ajax(options);
 			};
-		})(httpMethods[i]);
+		})(httpMethodNames[i], httpMethods[i]);
 	}
 
 	/* Gets a JSON file locally */
-	doughFn.getJSON = function(options) {
+	doughFn.json = function(options) {
 	    doughFn.get({
 	        url: options.url,
 	        contentType: "text/plain",
