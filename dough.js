@@ -290,7 +290,7 @@
 		},
 
 		/* Removes a CSS translate3d method from the collection's elements */
-		reset_translate: function(index) {
+		resetTranslate: function(index) {
 		    _each(this, function(e) {
 		        e.style[_renderEngine + "Transform"] = "";
 		    }, index);
