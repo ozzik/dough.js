@@ -1,4 +1,4 @@
-/*! Dough.js - by Oz Pinhas @ 2013 (Version 1.0)
+/*! Dough.js - by Oz Pinhas @ 2013 (Version .1)
  *  https://github.com/ozzik/dough.js
  *  Licensed under the MIT license. */
 (function(w) {
@@ -286,13 +286,6 @@
 		translate: function(x, y, z, index) {
 		    _each(this, function(e) {
 		        e.style[_renderEngine + "Transform"] = "translate3d(" + (x || 0) + "px," + (y || 0) + "px," + (z || 0) + "px)";
-		    }, index);
-		},
-
-		/* Removes a CSS translate3d method from the collection's elements */
-		resetTranslate: function(index) {
-		    _each(this, function(e) {
-		        e.style[_renderEngine + "Transform"] = "";
 		    }, index);
 		},
 
