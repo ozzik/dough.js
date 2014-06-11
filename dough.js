@@ -1,4 +1,4 @@
-/*! Dough.js - by Oz Pinhas @ 2013 (Version .1)
+/*! Dough.js - by Oz Pinhas @ 2013 (Version 0.1.1)
  *  https://github.com/ozzik/dough.js
  *  Licensed under the MIT license. */
 (function(w) {
@@ -557,32 +557,11 @@
 		})(httpMethodNames[i], httpMethods[i]);
 	}
 
-	/* Gets a JSON file locally */
-	doughFn.json = function(options) {
-	    doughFn.get({
-	        url: options.url,
-	        contentType: "text/plain",
-	        success: function(data) {
-	            // Network success
-	            var result = doughFn.parseJSON(data);
-
-	            if (result.isSuccess) {
-	                options.success(result.json);
-	            } else {
-	                (options.parseError) ? options.parseError(result.error) : _log("Dough JSON parsing error: " + result.error.name + " - " + result.error.message + ". You should handle this error with a .parseError method", true);
-	            }
-	        },
-	        error: function(error) {
-	            options.error ? options.error(error) : _log("Dough AJAX error: Returned " + error + ". You should handle this error with a .error method", true);
-	        }
-	    });
-	};
-
 	/* Performs a cross-site request by injecting the request as a script */
 	doughFn.jsonp = function(options) {
 		var script = document.createElement("script");
 
-		script.src = options.url + "?" + (options.callbackParam ? options.callbackParam : "callback") + "=" + options.callback + (options.data ? "&" + _generate_http_parameters(options.data) : "");
+		script.src = options.url + "?" + (options.cbParam ? options.cbParam : "callback") + "=" + options.callback + (options.data ? "&" + _generate_http_parameters(options.data) : "");
 		script.type = "text/javascript";
 
 		document.head.appendChild(script);
