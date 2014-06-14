@@ -12,53 +12,48 @@
     <link href="http://fonts.googleapis.com/css?family=Cabin:400,700" rel="stylesheet" type="text/css" />
 </head>
 <body>
-    <div class="ur-pages"><div class="ur-page cover" data-id="_cover" data-index="0"><div class="ur-page-content"><a name="undefined"></a><div class="header">
-    <!-- <h1>Dough.js</h1> -->
+<div class="ur-pages"><div class="ur-page cover" data-id="_cover" data-index="0"><div class="ur-page-content"><a name="undefined"></a><div class="header">
     <div class="wrapper">
         <div class="section-image section-home"></div>
         <h1 class="section-title">Dough.js</h1>
     </div>
 </div>
-<div class="wrapper grid-columns column-mid ur-pager">
-    <div class="grid-column grid-column-3">Here will be browser support thingies...</div>
+<div class="wrapper grid-columns column-mid home-links">
+    <div class="grid-column grid-column-3 column-mid">
+        <a href="https://github.com/ozzik/dough.js" class="button">Download</a>
+        <p class="note-download"><small>Just 3KB when gzipped and minified</small></p>
+    </div>
 </div>
-<div class="wrapper grid-columns column-mid ur-pager">
+<div class="wrapper grid-columns column-mid home-intro">
     <div class="grid-column grid-column-3">
-        <pre>
-            <code class="lang-javascript">
-/* 
+        <pre class=" language-javascript"><code class=" language-javascript">
+<span class="token comment" spellcheck="true">/* 
  * Dough.js is a common yet a bit different JS library.
  * 
  * It supports collection-wide and granular actions,
- * easily CSS transform manipulations, perform callbacks
- * upon CSS animation and transition. And is very cute.
+ * easy CSS transform manipulations, CSS animation and
+ * transition callbacks. And is very cute.
  * 
  * It's also super light since it works only on modern
  * desktop and mobile browsers :D
  * 
  * 
- * Check the docs below and fork me on GitHub...
- * 
- */
-            </code>
-        </pre>
+ * Check the docs below and have a good time...
+ */</span>
+        </code></pre>
     </div>
-    <!-- <div class="grid-column grid-column-1">d</div>
-    <div class="grid-column grid-column-1">d</div>
-    <div class="grid-column grid-column-1">d</div>
-    <div class="grid-column grid-column-1">d</div>
-    <div class="grid-column grid-column-1">d</div> -->
 </div>
-
-<div class="ur-page chapter" data-id="chapter-core" data-index="1"><div class="ur-page-content"><a name="chapter-core"></a><div class="wrapper section-page">
-    <div class="column-mid">
-        <!-- <div class="section-image-wrapper">
-            <div class="section-image section-core"></div>
-        </div> -->
-        <h2 class="section-title">What's different?</h2>
+<div class="wrapper grid-columns column-mid ur-page">
+    <div class="grid-column grid-column-3">
+        <div class="supported-browsers"></div>
+        <p>Dough supports modern browsers, and should do well on Google Chrome, Firefox, Safari, Internet Explorer 9+, iOS and Android 2+.</p>
     </div>
-</div></div></div>
-
+</div>
+<div class="wrapper section-page ur-page">
+    <div class="column-mid">
+        <h2 class="section-title">What's Different?</h2>
+    </div>
+</div>
 <div class="wrapper grid-columns column-mid ur-page">
     <div class="grid-column grid-column-3 text-with-code">
         <h3 class="subtitle">Collection Methods</h3>
@@ -98,26 +93,21 @@ buttons<span class="token punctuation">.</span><span class="token function">off<
         </div>
         <h2 class="section-title">Core (Query)</h2>
     </div>
-    </div></div></div><div class="ur-page" data-id="dough" data-index="2"><div class="ur-page-content"><a name="dough"></a><div class="wrapper">
+</div></div></div><div class="ur-page" data-id="dough" data-index="2"><div class="ur-page-content"><a name="dough"></a><div class="wrapper grid-columns column-mid text-with-code">
+    <div class="grid-column grid-column-3">
         <h3 class="method-title">Dough( selector ) or $( selector )</h3>
-    </div>
-    <div class="wrapper grid-columns">
-        <div class="grid-column grid-column-2">
-            <h4 class="subtitle method-subtitle">Description</h4>
-            <p class="method-description text-with-code">Matches elements in the DOM with the given selector or wraps a given DOM element object(s) in a Dough object.</p>
-            <h4 class="subtitle method-subtitle">Parameters</h4>
-            <dl class="method-parameters">
-                
-                <dt class="method-parameter-name">selector </dt>
-                <dd class="method-parameter-meta"><span class="ur-code"></span> <span class="ur-code">(string)</span> CSS selector, <span class="ur-code">(HTMLElement)</span>&nbsp;DOM element or any other array/collection <span class="ur-code">(NodeList)</span> of DOM elements</dd>
-                
-            </dl>
-            <h4 class="subtitle method-subtitle">Returns</h4>
-            <p class="method-return text-with-code">A <span class="ur-code">Dough</span> object containing the matched element(s).</p>
-        </div>
-        <div class="grid-column grid-column-3">
-        <div class="grid-column grid-column-wide grid-column-method-example">
-                <pre class=" language-javascript"><code class=" language-javascript"><span class="token comment" spellcheck="true">// CSS selector
+        <p class="method-description">Matches elements in the DOM with the given selector or wraps a given DOM element object(s) in a Dough object.</p>
+        <h4 class="subtitle method-subtitle">Parameters</h4>
+        <dl class="method-parameters">
+            
+            <dt class="method-parameter-name">selector </dt>
+            <dd class="method-parameter-meta"><span class="ur-code"></span> <code class=" language-javascript"><span class="token punctuation">(</span>string<span class="token punctuation">)</span></code> CSS selector, <code class=" language-javascript"><span class="token punctuation">(</span>HTMLElement<span class="token punctuation">)</span></code>&nbsp;DOM element or any other array/collection <code class=" language-javascript"><span class="token punctuation">(</span>NodeList<span class="token punctuation">)</span></code> of DOM elements</dd>
+            
+        </dl>
+        <h4 class="subtitle method-subtitle">Returns</h4>
+        <p class="method-return">A <code class=" language-javascript">Dough</code> object containing the matched element(s).</p>
+        <h4 class="subtitle method-subtitle">Like This</h4>
+        <pre class=" language-javascript"><code class=" language-javascript"><span class="token comment" spellcheck="true">// CSS selector
 </span>$<span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment" spellcheck="true">
 // DOM element
@@ -134,94 +124,70 @@ buttons<span class="token punctuation">.</span><span class="token function">off<
     squirtle <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">querySelector<span class="token punctuation">(</span></span><span class="token string">".squirtle"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 $<span class="token punctuation">(</span><span class="token punctuation">[</span> bulbasuar<span class="token punctuation">,</span> charmander<span class="token punctuation">,</span> squirtle <span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-            </div>
-        </div>
-    </div></div></div><div class="ur-page" data-id="find" data-index="3"><div class="ur-page-content"><a name="find"></a><div class="wrapper">
+    </div>
+</div></div></div><div class="ur-page" data-id="find" data-index="3"><div class="ur-page-content"><a name="find"></a><div class="wrapper grid-columns column-mid text-with-code">
+    <div class="grid-column grid-column-3">
         <h3 class="method-title">find( selector )</h3>
+        <p class="method-description">Matches elements in the first element in the collection with the given selector.</p>
+        <h4 class="subtitle method-subtitle">Parameters</h4>
+        <dl class="method-parameters">
+            
+            <dt class="method-parameter-name">selector </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(string)</span> CSS selector</dd>
+            
+        </dl>
+        <h4 class="subtitle method-subtitle">Returns</h4>
+        <p class="method-return">A <code class=" language-javascript">Dough</code> object containing the matched element(s).</p>
+        <h4 class="subtitle method-subtitle">Like This</h4>
+        <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">(</span><span class="token string">".my-list"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">find<span class="token punctuation">(</span></span><span class="token string">"li"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addClass<span class="token punctuation">(</span></span><span class="token string">"ghosts"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
     </div>
-    <div class="wrapper grid-columns">
-        <div class="grid-column grid-column-2">
-            <h4 class="subtitle method-subtitle">Description</h4>
-            <p class="method-description text-with-code">Matches elements in the first element in the collection with the given selector.</p>
-            <h4 class="subtitle method-subtitle">Parameters</h4>
-            <dl class="method-parameters">
-                
-                <dt class="method-parameter-name">selector </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(string)</span> CSS selector</dd>
-                
-            </dl>
-            <h4 class="subtitle method-subtitle">Returns</h4>
-            <p class="method-return text-with-code">A <span class="ur-code">Dough</span> object containing the matched element(s).</p>
-        </div>
-        <div class="grid-column grid-column-3">
-        <div class="grid-column grid-column-wide grid-column-method-example">
-                <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">(</span><span class="token string">".my-list"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">find<span class="token punctuation">(</span></span><span class="token string">"li"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addClass<span class="token punctuation">(</span></span><span class="token string">"ghosts"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-            </div>
-        </div>
-    </div></div></div><div class="ur-page" data-id="next" data-index="4"><div class="ur-page-content"><a name="next"></a><div class="wrapper">
+</div></div></div><div class="ur-page" data-id="next" data-index="4"><div class="ur-page-content"><a name="next"></a><div class="wrapper grid-columns column-mid text-with-code">
+    <div class="grid-column grid-column-3">
         <h3 class="method-title">next()</h3>
+        <p class="method-description">Gets the successor element of the <strong>first element</strong> in the collection.</p>
+        <h4 class="subtitle method-subtitle">Parameters</h4>
+        <dl class="method-parameters">
+            
+            <dt class="method-parameter-name">None </dt>
+            <dd class="method-parameter-meta"><span class="ur-code"></span> </dd>
+            
+        </dl>
+        <h4 class="subtitle method-subtitle">Returns</h4>
+        <p class="method-return">A <code class=" language-javascript">Dough</code> object containing the successor element.</p>
+        <h4 class="subtitle method-subtitle">Like This</h4>
+        <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">(</span><span class="token string">".my-li"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">next<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addClass<span class="token punctuation">(</span></span><span class="token string">"bitch"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
     </div>
-    <div class="wrapper grid-columns">
-        <div class="grid-column grid-column-2">
-            <h4 class="subtitle method-subtitle">Description</h4>
-            <p class="method-description text-with-code">Gets the successor element of the <strong>first element</strong> in the collection.</p>
-            <h4 class="subtitle method-subtitle">Parameters</h4>
-            <dl class="method-parameters">
-                
-                <dt class="method-parameter-name">None </dt>
-                <dd class="method-parameter-meta"><span class="ur-code"></span> </dd>
-                
-            </dl>
-            <h4 class="subtitle method-subtitle">Returns</h4>
-            <p class="method-return text-with-code">A <span class="ur-code">Dough</span> object containing the successor element.</p>
-        </div>
-        <div class="grid-column grid-column-3">
-        <div class="grid-column grid-column-wide grid-column-method-example">
-                <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">(</span><span class="token string">".my-li"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">next<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addClass<span class="token punctuation">(</span></span><span class="token string">"bitch"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-            </div>
-        </div>
-    </div></div></div><div class="ur-page" data-id="previous" data-index="5"><div class="ur-page-content"><a name="previous"></a><div class="wrapper">
+</div></div></div><div class="ur-page" data-id="previous" data-index="5"><div class="ur-page-content"><a name="previous"></a><div class="wrapper grid-columns column-mid text-with-code">
+    <div class="grid-column grid-column-3">
         <h3 class="method-title">previous()</h3>
+        <p class="method-description">Gets the predecessor element of the <strong>first element</strong> in the collection.</p>
+        <h4 class="subtitle method-subtitle">Parameters</h4>
+        <dl class="method-parameters">
+            
+            <dt class="method-parameter-name">None </dt>
+            <dd class="method-parameter-meta"><span class="ur-code"></span> </dd>
+            
+        </dl>
+        <h4 class="subtitle method-subtitle">Returns</h4>
+        <p class="method-return">A <code class=" language-javascript">Dough</code> object containing the predecessor element.</p>
+        <h4 class="subtitle method-subtitle">Like This</h4>
+        <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">(</span><span class="token string">".my-li"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">next<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addClass<span class="token punctuation">(</span></span><span class="token string">"queen"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
     </div>
-    <div class="wrapper grid-columns">
-        <div class="grid-column grid-column-2">
-            <h4 class="subtitle method-subtitle">Description</h4>
-            <p class="method-description text-with-code">Gets the predecessor element of the <strong>first element</strong> in the collection.</p>
-            <h4 class="subtitle method-subtitle">Parameters</h4>
-            <dl class="method-parameters">
-                
-                <dt class="method-parameter-name">None </dt>
-                <dd class="method-parameter-meta"><span class="ur-code"></span> </dd>
-                
-            </dl>
-            <h4 class="subtitle method-subtitle">Returns</h4>
-            <p class="method-return text-with-code">A <span class="ur-code">Dough</span> object containing the predecessor element.</p>
-        </div>
-        <div class="grid-column grid-column-3">
-        <div class="grid-column grid-column-wide grid-column-method-example">
-                <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">(</span><span class="token string">".my-li"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">next<span class="token punctuation">(</span></span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addClass<span class="token punctuation">(</span></span><span class="token string">"queen"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-            </div>
-        </div>
-    </div></div></div><div class="ur-page" data-id="each" data-index="6"><div class="ur-page-content"><a name="each"></a><div class="wrapper">
+</div></div></div><div class="ur-page" data-id="each" data-index="6"><div class="ur-page-content"><a name="each"></a><div class="wrapper grid-columns column-mid text-with-code">
+    <div class="grid-column grid-column-3">
         <h3 class="method-title">each( fn )</h3>
-    </div>
-    <div class="wrapper grid-columns">
-        <div class="grid-column grid-column-2">
-            <h4 class="subtitle method-subtitle">Description</h4>
-            <p class="method-description text-with-code">Invokes a given function on every element in the collection. The function is provided with the element as a DOM element object.</p>
-            <h4 class="subtitle method-subtitle">Parameters</h4>
-            <dl class="method-parameters">
-                
-                <dt class="method-parameter-name">fn </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(function)</span> Function to invoke on every element</dd>
-                
-            </dl>
-            <h4 class="subtitle method-subtitle">Returns</h4>
-            <p class="method-return text-with-code">The same <span class="ur-code">Dough</span> object for further method chaining.</p>
-        </div>
-        <div class="grid-column grid-column-3">
-        <div class="grid-column grid-column-wide grid-column-method-example">
-            <pre class=" language-javascript"><code class=" language-javascript"><span class="token keyword">var</span> rainbow <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
+        <p class="method-description">Invokes a given function on every element in the collection. The function is provided with the element as a DOM element object.</p>
+        <h4 class="subtitle method-subtitle">Parameters</h4>
+        <dl class="method-parameters">
+            
+            <dt class="method-parameter-name">fn </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(function)</span> Function to invoke on every element</dd>
+            
+        </dl>
+        <h4 class="subtitle method-subtitle">Returns</h4>
+        <p class="method-return">The same <code class=" language-javascript">Dough</code> object for further method chaining.</p>
+        <h4 class="subtitle method-subtitle">Like This</h4>
+        <pre class=" language-javascript"><code class=" language-javascript"><span class="token keyword">var</span> rainbow <span class="token operator">=</span> <span class="token string">""</span><span class="token punctuation">;</span>
 
 $<span class="token punctuation">(</span><span class="token string">".button-shiny"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">each<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span>element<span class="token punctuation">)</span> <span class="token punctuation">{</span>
 <span class="token comment" spellcheck="true">  // Element is an HTMLElement object
@@ -229,38 +195,32 @@ $<span class="token punctuation">(</span><span class="token string">".button-shi
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 
 console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">"pretty colors: "</span> <span class="token operator">+</span> rainbow <span class="token operator">+</span> <span class="token string">"!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-            </div>
-        </div>
-    </div></div></div><div class="ur-page chapter" data-id="chapter-manipulation" data-index="7"><div class="ur-page-content"><a name="chapter-manipulation"></a><div class="wrapper section-page">
-        <div class="column-mid">
-            <div class="section-image-wrapper">
-                <div class="section-image section-manipulation"></div>
-            </div>
-            <h2 class="section-title">Manipulation</h2>
-        </div>
-    </div></div></div><div class="ur-page" data-id="html" data-index="8"><div class="ur-page-content"><a name="html"></a><div class="wrapper">
-        <h3 class="method-title">html( value[, index] )</h3>
     </div>
-    <div class="wrapper grid-columns">
-        <div class="grid-column grid-column-2">
-            <h4 class="subtitle method-subtitle">Description</h4>
-            <p class="method-description text-with-code">Sets the HTML contents of every element in the collection (or of a specific element).</p>
-            <h4 class="subtitle method-subtitle">Parameters</h4>
-            <dl class="method-parameters">
-                
-                <dt class="method-parameter-name">value </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(string)</span> HTML to set as the content</dd>
-                
-                <dt class="method-parameter-name">index </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Collection element's index to perform this action on</dd>
-                
-            </dl>
-            <h4 class="subtitle method-subtitle">Returns</h4>
-            <p class="method-return text-with-code">The same <span class="ur-code">Dough</span> object for further method chaining. <strong>Notice</strong>: When no value is set - the method <strong>won't return the HTML contents</strong> (use <code class=" language-javascript">$<span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>innerHTML</code> instead).</p>
+</div></div></div><div class="ur-page chapter" data-id="chapter-manipulation" data-index="7"><div class="ur-page-content"><a name="chapter-manipulation"></a><div class="wrapper section-page">
+    <div class="column-mid">
+        <div class="section-image-wrapper">
+            <div class="section-image section-manipulation"></div>
         </div>
-        <div class="grid-column grid-column-3">
-        <div class="grid-column grid-column-wide grid-column-method-example">
-                <pre class=" language-javascript"><code class=" language-javascript"><span class="token comment" spellcheck="true">// Happy puppies
+        <h2 class="section-title">Manipulation</h2>
+    </div>
+</div></div></div><div class="ur-page" data-id="html" data-index="8"><div class="ur-page-content"><a name="html"></a><div class="wrapper grid-columns column-mid text-with-code">
+    <div class="grid-column grid-column-3">
+        <h3 class="method-title">html( value[, index] )</h3>
+        <p class="method-description">Sets the HTML contents of every element in the collection (or of a specific element).</p>
+        <h4 class="subtitle method-subtitle">Parameters</h4>
+        <dl class="method-parameters">
+            
+            <dt class="method-parameter-name">value </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(string)</span> HTML to set as the content</dd>
+            
+            <dt class="method-parameter-name">index </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Collection element's index to perform this action on</dd>
+            
+        </dl>
+        <h4 class="subtitle method-subtitle">Returns</h4>
+        <p class="method-return">The same <code class=" language-javascript">Dough</code> object for further method chaining. <strong>Notice</strong>: When no value is set - the method <strong>won't return the HTML contents</strong> (use <code class=" language-javascript">$<span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>innerHTML</code> instead).</p>
+        <h4 class="subtitle method-subtitle">Like This</h4>
+        <pre class=" language-javascript"><code class=" language-javascript"><span class="token comment" spellcheck="true">// Happy puppies
 </span>$<span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">html<span class="token punctuation">(</span></span><span class="token string">"Beyoncé Beyoncé, Shakira Shakira"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 $<span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">html<span class="token punctuation">(</span></span><span class="token string">"Beyoncé"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true"> // Happy puppy (Granular)
 </span><span class="token comment" spellcheck="true">
@@ -271,31 +231,25 @@ $<span class="token punctuation">(</span><span class="token string">"a"</span><s
 <span class="token comment" spellcheck="true">
 // This is how you'd retrieve HTML content
 </span>$<span class="token punctuation">(</span><span class="token string">"p"</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">3</span><span class="token punctuation">]</span><span class="token punctuation">.</span>innerHTML<span class="token punctuation">;</span><span class="token comment" spellcheck="true"> // Since the dawn of the kittenet</span></code></pre>
-            </div>
-        </div>
-    </div></div></div><div class="ur-page" data-id="before" data-index="9"><div class="ur-page-content"><a name="before"></a><div class="wrapper">
-        <h3 class="method-title">before( content[, index ] )</h3>
     </div>
-    <div class="wrapper grid-columns">
-        <div class="grid-column grid-column-2">
-            <h4 class="subtitle method-subtitle">Description</h4>
-            <p class="method-description text-with-code">Appends content to the page before every element in the collection (or before a specific element).</p>
-            <h4 class="subtitle method-subtitle">Parameters</h4>
-            <dl class="method-parameters">
-                
-                <dt class="method-parameter-name">content </dt>
-                <dd class="method-parameter-meta"><span class="ur-code"></span> <span class="ur-code">(string)</span> HTML markup to add as the content, <span class="ur-code">(HTMLElement)</span>&nbsp;DOM element or any other array / collection <span class="ur-code">(NodeList)</span> of DOM elements</dd>
-                
-                <dt class="method-parameter-name">index </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Collection element's index to perform this action on</dd>
-                
-            </dl>
-            <h4 class="subtitle method-subtitle">Returns</h4>
-            <p class="method-return text-with-code">The same <span class="ur-code">Dough</span> object for further method chaining.</p>
-        </div>
-        <div class="grid-column grid-column-3">
-        <div class="grid-column grid-column-wide grid-column-method-example">
-                <pre class=" language-javascript"><code class=" language-javascript"><span class="token comment" spellcheck="true">// HTML string;
+</div></div></div><div class="ur-page" data-id="before" data-index="9"><div class="ur-page-content"><a name="before"></a><div class="wrapper grid-columns column-mid text-with-code">
+    <div class="grid-column grid-column-3">
+        <h3 class="method-title">before( content[, index ] )</h3>
+        <p class="method-description">Appends content to the page before every element in the collection (or before a specific element).</p>
+        <h4 class="subtitle method-subtitle">Parameters</h4>
+        <dl class="method-parameters">
+            
+            <dt class="method-parameter-name">content </dt>
+            <dd class="method-parameter-meta"><span class="ur-code"></span> <code class=" language-javascript"><span class="token punctuation">(</span>string<span class="token punctuation">)</span></code> HTML markup to add as the content, <code class=" language-javascript"><span class="token punctuation">(</span>HTMLElement<span class="token punctuation">)</span></code>&nbsp;DOM element or any other array / collection <code class=" language-javascript"><span class="token punctuation">(</span>NodeList<span class="token punctuation">)</span></code> of DOM elements</dd>
+            
+            <dt class="method-parameter-name">index </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Collection element's index to perform this action on</dd>
+            
+        </dl>
+        <h4 class="subtitle method-subtitle">Returns</h4>
+        <p class="method-return">The same <code class=" language-javascript">Dough</code> object for further method chaining.</p>
+        <h4 class="subtitle method-subtitle">Like This</h4>
+        <pre class=" language-javascript"><code class=" language-javascript"><span class="token comment" spellcheck="true">// HTML string;
 </span>$<span class="token punctuation">(</span><span class="token string">"li"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">before<span class="token punctuation">(</span></span><span class="token string">"&lt;li&gt;I'm lazy!&lt;/li&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 $<span class="token punctuation">(</span><span class="token string">"li"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">before<span class="token punctuation">(</span></span><span class="token string">"&lt;li&gt;I'm lazy!&lt;/li&gt;"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true"> // Granular
 </span><span class="token comment" spellcheck="true">
@@ -303,31 +257,25 @@ $<span class="token punctuation">(</span><span class="token string">"li"</span><
 </span><span class="token keyword">var</span> e <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement<span class="token punctuation">(</span></span><span class="token string">"li"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 li<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">"I'm nice"</span><span class="token punctuation">;</span>
 $<span class="token punctuation">(</span><span class="token string">"li"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">before<span class="token punctuation">(</span></span>e<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-            </div>
-        </div>
-    </div></div></div><div class="ur-page" data-id="after" data-index="10"><div class="ur-page-content"><a name="after"></a><div class="wrapper">
-        <h3 class="method-title">after( content[, index ] )</h3>
     </div>
-    <div class="wrapper grid-columns">
-        <div class="grid-column grid-column-2">
-            <h4 class="subtitle method-subtitle">Description</h4>
-            <p class="method-description text-with-code">Appends content to the page after every element in the collection (or to a specific element).</p>
-            <h4 class="subtitle method-subtitle">Parameters</h4>
-            <dl class="method-parameters">
-                
-                <dt class="method-parameter-name">content </dt>
-                <dd class="method-parameter-meta"><span class="ur-code"></span> <span class="ur-code">(string)</span> HTML markup to add as the content, <span class="ur-code">(HTMLElement)</span>&nbsp;DOM element or any other array / collection <span class="ur-code">(NodeList)</span> of DOM elements</dd>
-                
-                <dt class="method-parameter-name">index </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Collection element's index to perform this action on</dd>
-                
-            </dl>
-            <h4 class="subtitle method-subtitle">Returns</h4>
-            <p class="method-return text-with-code">The same <span class="ur-code">Dough</span> object for further method chaining.</p>
-        </div>
-        <div class="grid-column grid-column-3">
-        <div class="grid-column grid-column-wide grid-column-method-example">
-                <pre class=" language-javascript"><code class=" language-javascript"><span class="token comment" spellcheck="true">// HTML string;
+</div></div></div><div class="ur-page" data-id="after" data-index="10"><div class="ur-page-content"><a name="after"></a><div class="wrapper grid-columns column-mid text-with-code">
+    <div class="grid-column grid-column-3">
+        <h3 class="method-title">after( content[, index ] )</h3>
+        <p class="method-description">Appends content to the page after every element in the collection (or to a specific element).</p>
+        <h4 class="subtitle method-subtitle">Parameters</h4>
+        <dl class="method-parameters">
+            
+            <dt class="method-parameter-name">content </dt>
+            <dd class="method-parameter-meta"><span class="ur-code"></span> <code class=" language-javascript"><span class="token punctuation">(</span>string<span class="token punctuation">)</span></code> HTML markup to add as the content, <code class=" language-javascript"><span class="token punctuation">(</span>HTMLElement<span class="token punctuation">)</span></code>&nbsp;DOM element or any other array / collection <code class=" language-javascript"><span class="token punctuation">(</span>NodeList<span class="token punctuation">)</span></code> of DOM elements</dd>
+            
+            <dt class="method-parameter-name">index </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Collection element's index to perform this action on</dd>
+            
+        </dl>
+        <h4 class="subtitle method-subtitle">Returns</h4>
+        <p class="method-return">The same <code class=" language-javascript">Dough</code> object for further method chaining.</p>
+        <h4 class="subtitle method-subtitle">Like This</h4>
+        <pre class=" language-javascript"><code class=" language-javascript"><span class="token comment" spellcheck="true">// HTML string;
 </span>$<span class="token punctuation">(</span><span class="token string">"li"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">after<span class="token punctuation">(</span></span><span class="token string">"&lt;li&gt;I'm lazy!&lt;/li&gt;"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 $<span class="token punctuation">(</span><span class="token string">"li"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">after<span class="token punctuation">(</span></span><span class="token string">"&lt;li&gt;I'm lazy!&lt;/li&gt;"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true"> // Granular
 </span><span class="token comment" spellcheck="true">
@@ -335,34 +283,28 @@ $<span class="token punctuation">(</span><span class="token string">"li"</span><
 </span><span class="token keyword">var</span> e <span class="token operator">=</span> document<span class="token punctuation">.</span><span class="token function">createElement<span class="token punctuation">(</span></span><span class="token string">"li"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 li<span class="token punctuation">.</span>innerHTML <span class="token operator">=</span> <span class="token string">"I'm nice"</span><span class="token punctuation">;</span>
 $<span class="token punctuation">(</span><span class="token string">"li"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">after<span class="token punctuation">(</span></span>e<span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-            </div>
-        </div>
-    </div></div></div><div class="ur-page" data-id="attr" data-index="11"><div class="ur-page-content"><a name="attr"></a><div class="wrapper">
-        <h3 class="method-title">attr( name[, value, index] )</h3>
     </div>
-    <div class="wrapper grid-columns">
-        <div class="grid-column grid-column-2">
-            <h4 class="subtitle method-subtitle">Description</h4>
-            <p class="method-description text-with-code">Sets or removes an attribute for every element in the collection, based on the given parameters (or for a specific element).</p>
-            <h4 class="subtitle method-subtitle">Parameters</h4>
-            <dl class="method-parameters">
-                
-                <dt class="method-parameter-name">name </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(string)</span> Name of the attribute to modify</dd>
-                
-                <dt class="method-parameter-name">value </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(string)</span> Value to set to the attribute</dd>
-                
-                <dt class="method-parameter-name">index </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Collection element's index to perform this action on</dd>
-                
-            </dl>
-            <h4 class="subtitle method-subtitle">Returns</h4>
-            <p class="method-return text-with-code">The same <span class="ur-code">Dough</span> object for further method chaining. <strong>Notice</strong>: When no <span class="ur-code">value</span> is set - the method will remove that attribute and <strong>won't return the value of that attribute</strong> (use <code class=" language-javascript">$<span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">getAttribute<span class="token punctuation">(</span></span><span class="token string">"href"</span><span class="token punctuation">)</span></code> instead).</p>
-        </div>
-        <div class="grid-column grid-column-3">
-        <div class="grid-column grid-column-wide grid-column-method-example">
-                <pre class=" language-javascript"><code class=" language-javascript"><span class="token comment" spellcheck="true">// Happy kitties
+</div></div></div><div class="ur-page" data-id="attr" data-index="11"><div class="ur-page-content"><a name="attr"></a><div class="wrapper grid-columns column-mid text-with-code">
+    <div class="grid-column grid-column-3">
+        <h3 class="method-title">attr( name[, value, index] )</h3>
+        <p class="method-description">Sets or removes an attribute for every element in the collection, based on the given parameters (or for a specific element).</p>
+        <h4 class="subtitle method-subtitle">Parameters</h4>
+        <dl class="method-parameters">
+            
+            <dt class="method-parameter-name">name </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(string)</span> Name of the attribute to modify</dd>
+            
+            <dt class="method-parameter-name">value </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(string)</span> Value to set to the attribute</dd>
+            
+            <dt class="method-parameter-name">index </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Collection element's index to perform this action on</dd>
+            
+        </dl>
+        <h4 class="subtitle method-subtitle">Returns</h4>
+        <p class="method-return">The same <code class=" language-javascript">Dough</code> object for further method chaining. <strong>Notice</strong>: When no <code class=" language-javascript">value</code> is set - the method will remove that attribute and <strong>won't return the value of that attribute</strong> (use <code class=" language-javascript">$<span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">getAttribute<span class="token punctuation">(</span></span><span class="token string">"href"</span><span class="token punctuation">)</span></code> instead).</p>
+        <h4 class="subtitle method-subtitle">Like This</h4>
+        <pre class=" language-javascript"><code class=" language-javascript"><span class="token comment" spellcheck="true">// Happy kitties
 </span>$<span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">attr<span class="token punctuation">(</span></span><span class="token string">"href"</span><span class="token punctuation">,</span> <span class="token string">"http://pleasehelpmebeyonce.com"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 $<span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">attr<span class="token punctuation">(</span></span><span class="token string">"href"</span><span class="token punctuation">,</span> <span class="token string">"http://nowhere.com"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true"> // Happy kitty (Granular)
 </span><span class="token comment" spellcheck="true">
@@ -373,97 +315,79 @@ $<span class="token punctuation">(</span><span class="token string">"a"</span><s
 <span class="token comment" spellcheck="true">
 // This is how you'd retrieve an attribute's value
 </span>$<span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span><span class="token function">getAttribute<span class="token punctuation">(</span></span><span class="token string">"href"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true"> // Since forever</span></code></pre>
-            </div>
-        </div>
-    </div></div></div><div class="ur-page chapter" data-id="chapter-css" data-index="12"><div class="ur-page-content"><a name="chapter-css"></a><div class="wrapper section-page">
-        <div class="column-mid">
-            <div class="section-image-wrapper">
-                <div class="section-image section-css"></div>
-            </div>
-            <h2 class="section-title">CSS</h2>
-        </div>
-    </div></div></div><div class="ur-page" data-id="addClass" data-index="13"><div class="ur-page-content"><a name="addClass"></a><div class="wrapper">
-        <h3 class="method-title">addClass( classes[, index ] )</h3>
     </div>
-    <div class="wrapper grid-columns">
-        <div class="grid-column grid-column-2">
-            <h4 class="subtitle method-subtitle">Description</h4>
-            <p class="method-description text-with-code">Adds one or more CSS selector classes to every element in the collection (or to a specific element).</p>
-            <h4 class="subtitle method-subtitle">Parameters</h4>
-            <dl class="method-parameters">
-                
-                <dt class="method-parameter-name">classes </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(string)</span> CSS selector class(es)</dd>
-                
-                <dt class="method-parameter-name">index </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Collection element's index to perform this action on</dd>
-                
-            </dl>
-            <h4 class="subtitle method-subtitle">Returns</h4>
-            <p class="method-return text-with-code">The same <span class="ur-code">Dough</span> object for further method chaining.</p>
+</div></div></div><div class="ur-page chapter" data-id="chapter-css" data-index="12"><div class="ur-page-content"><a name="chapter-css"></a><div class="wrapper section-page">
+    <div class="column-mid">
+        <div class="section-image-wrapper">
+            <div class="section-image section-css"></div>
         </div>
-        <div class="grid-column grid-column-3">
-        <div class="grid-column grid-column-wide grid-column-method-example">
-            <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addClass<span class="token punctuation">(</span></span><span class="token string">"sugar-free carbon-free"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <h2 class="section-title">CSS</h2>
+    </div>
+</div></div></div><div class="ur-page" data-id="addClass" data-index="13"><div class="ur-page-content"><a name="addClass"></a><div class="wrapper grid-columns column-mid text-with-code">
+    <div class="grid-column grid-column-3">
+        <h3 class="method-title">addClass( classes[, index ] )</h3>
+        <p class="method-description">Adds one or more CSS selector classes to every element in the collection (or to a specific element).</p>
+        <h4 class="subtitle method-subtitle">Parameters</h4>
+        <dl class="method-parameters">
+            
+            <dt class="method-parameter-name">classes </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(string)</span> CSS selector class(es)</dd>
+            
+            <dt class="method-parameter-name">index </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Collection element's index to perform this action on</dd>
+            
+        </dl>
+        <h4 class="subtitle method-subtitle">Returns</h4>
+        <p class="method-return">The same <code class=" language-javascript">Dough</code> object for further method chaining.</p>
+        <h4 class="subtitle method-subtitle">Like This</h4>
+        <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addClass<span class="token punctuation">(</span></span><span class="token string">"sugar-free carbon-free"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment" spellcheck="true">
 // Granular 
 </span>$<span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">addClass<span class="token punctuation">(</span></span><span class="token string">"sugar-free"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-            </div>
-        </div>
-    </div></div></div><div class="ur-page" data-id="removeClass" data-index="14"><div class="ur-page-content"><a name="removeClass"></a><div class="wrapper">
-        <h3 class="method-title">removeClass( classes[, index ] )</h3>
     </div>
-    <div class="wrapper grid-columns">
-        <div class="grid-column grid-column-2">
-            <h4 class="subtitle method-subtitle">Description</h4>
-            <p class="method-description text-with-code">Removes one or more CSS selector classes from every element in the collection (or from a specific element).</p>
-            <h4 class="subtitle method-subtitle">Parameters</h4>
-            <dl class="method-parameters">
-                
-                <dt class="method-parameter-name">classes </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(string)</span> CSS selector class(es)</dd>
-                
-                <dt class="method-parameter-name">index </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Collection element's index to perform this action on</dd>
-                
-            </dl>
-            <h4 class="subtitle method-subtitle">Returns</h4>
-            <p class="method-return text-with-code">The same <span class="ur-code">Dough</span> object for further method chaining.</p>
-        </div>
-        <div class="grid-column grid-column-3">
-        <div class="grid-column grid-column-wide grid-column-method-example">
-            <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">removeClass<span class="token punctuation">(</span></span><span class="token string">"sugar carbon"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</div></div></div><div class="ur-page" data-id="removeClass" data-index="14"><div class="ur-page-content"><a name="removeClass"></a><div class="wrapper grid-columns column-mid text-with-code">
+    <div class="grid-column grid-column-3">
+        <h3 class="method-title">removeClass( classes[, index ] )</h3>
+        <p class="method-description">Removes one or more CSS selector classes from every element in the collection (or from a specific element).</p>
+        <h4 class="subtitle method-subtitle">Parameters</h4>
+        <dl class="method-parameters">
+            
+            <dt class="method-parameter-name">classes </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(string)</span> CSS selector class(es)</dd>
+            
+            <dt class="method-parameter-name">index </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Collection element's index to perform this action on</dd>
+            
+        </dl>
+        <h4 class="subtitle method-subtitle">Returns</h4>
+        <p class="method-return">The same <code class=" language-javascript">Dough</code> object for further method chaining.</p>
+        <h4 class="subtitle method-subtitle">Like This</h4>
+        <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">removeClass<span class="token punctuation">(</span></span><span class="token string">"sugar carbon"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token comment" spellcheck="true">
 // Granular 
 </span>$<span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">removeClass<span class="token punctuation">(</span></span><span class="token string">"sugar"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-            </div>
-        </div>
-    </div></div></div><div class="ur-page" data-id="toggleClass" data-index="15"><div class="ur-page-content"><a name="toggleClass"></a><div class="wrapper">
-        <h3 class="method-title">toggleClass( classes[, isAdd, index ] )</h3>
     </div>
-    <div class="wrapper grid-columns">
-        <div class="grid-column grid-column-2">
-            <h4 class="subtitle method-subtitle">Description</h4>
-            <p class="method-description text-with-code">Adds or removes one or more CSS selector classes from every element in the collection, according to its presence (or from a specific element). Supply <span class="ur-code">isAdd</span> to perform a specific action - addition or removal.</p>
-            <h4 class="subtitle method-subtitle">Parameters</h4>
-            <dl class="method-parameters">
-                
-                <dt class="method-parameter-name">classes </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(string)</span> CSS selector class(es)</dd>
-                
-                <dt class="method-parameter-name">isAdd </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(boolean)</span> Explicit flag for performing an addition or removal action. <strong>Must be</strong> either <span class="ur-code">true</span> or <span class="ur-code">false</span></dd>
-                
-                <dt class="method-parameter-name">index </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Collection element's index to perform this action on</dd>
-                
-            </dl>
-            <h4 class="subtitle method-subtitle">Returns</h4>
-            <p class="method-return text-with-code">The same <span class="ur-code">Dough</span> object for further method chaining.</p>
-        </div>
-        <div class="grid-column grid-column-3">
-        <div class="grid-column grid-column-wide grid-column-method-example">
-            <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toggleClass<span class="token punctuation">(</span></span><span class="token string">"diet zero"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</div></div></div><div class="ur-page" data-id="toggleClass" data-index="15"><div class="ur-page-content"><a name="toggleClass"></a><div class="wrapper grid-columns column-mid text-with-code">
+    <div class="grid-column grid-column-3">
+        <h3 class="method-title">toggleClass( classes[, isAdd, index ] )</h3>
+        <p class="method-description">Adds or removes one or more CSS selector classes from every element in the collection, according to its presence (or from a specific element). Supply <code class=" language-javascript">isAdd</code> to perform a specific action - addition or removal.</p>
+        <h4 class="subtitle method-subtitle">Parameters</h4>
+        <dl class="method-parameters">
+            
+            <dt class="method-parameter-name">classes </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(string)</span> CSS selector class(es)</dd>
+            
+            <dt class="method-parameter-name">isAdd </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(boolean)</span> Explicit flag for performing an addition or removal action. <strong>Must be</strong> either <code class=" language-javascript"><span class="token keyword">true</span></code> or <code class=" language-javascript"><span class="token keyword">false</span></code></dd>
+            
+            <dt class="method-parameter-name">index </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Collection element's index to perform this action on</dd>
+            
+        </dl>
+        <h4 class="subtitle method-subtitle">Returns</h4>
+        <p class="method-return">The same <code class=" language-javascript">Dough</code> object for further method chaining.</p>
+        <h4 class="subtitle method-subtitle">Like This</h4>
+        <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toggleClass<span class="token punctuation">(</span></span><span class="token string">"diet zero"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 $<span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toggleClass<span class="token punctuation">(</span></span><span class="token string">"diet"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true"> // Granular
 </span><span class="token comment" spellcheck="true">
 // Explicit addition
@@ -482,31 +406,25 @@ $<span class="token punctuation">(</span><span class="token string">"a"</span><s
 </span><span class="token comment" spellcheck="true">
 // // Granular execution with explicit action
 </span>$<span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">toggleClass<span class="token punctuation">(</span></span><span class="token string">"zero"</span><span class="token punctuation">,</span> <span class="token keyword">true</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true"> // Removes from 1st element</span></code></pre>
-            </div>
-        </div>
-    </div></div></div><div class="ur-page" data-id="hasClass" data-index="16"><div class="ur-page-content"><a name="hasClass"></a><div class="wrapper">
-        <h3 class="method-title">hasClass( classes[, index ] )</h3>
     </div>
-    <div class="wrapper grid-columns">
-        <div class="grid-column grid-column-2">
-            <h4 class="subtitle method-subtitle">Description</h4>
-            <p class="method-description text-with-code">Determines whether every element in the collection has one or more CSS selector classes (or whether a specific element has).</p>
-            <h4 class="subtitle method-subtitle">Parameters</h4>
-            <dl class="method-parameters">
-                
-                <dt class="method-parameter-name">classes </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(string)</span> CSS selector class(es)</dd>
-                
-                <dt class="method-parameter-name">index </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Collection element's index to perform this action on</dd>
-                
-            </dl>
-            <h4 class="subtitle method-subtitle">Returns</h4>
-            <p class="method-return text-with-code"><span class="ur-code">Boolean</span> value for the presence of the CSS selector class(es).</p>
-        </div>
-        <div class="grid-column grid-column-3">
-        <div class="grid-column grid-column-wide grid-column-method-example">
-            <pre class=" language-javascript"><code class=" language-javascript"><span class="token comment" spellcheck="true">// Every &lt;a&gt; has 'light' and 'lite'
+</div></div></div><div class="ur-page" data-id="hasClass" data-index="16"><div class="ur-page-content"><a name="hasClass"></a><div class="wrapper grid-columns column-mid text-with-code">
+    <div class="grid-column grid-column-3">
+        <h3 class="method-title">hasClass( classes[, index ] )</h3>
+        <p class="method-description">Determines whether every element in the collection has one or more CSS selector classes (or whether a specific element has).</p>
+        <h4 class="subtitle method-subtitle">Parameters</h4>
+        <dl class="method-parameters">
+            
+            <dt class="method-parameter-name">classes </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(string)</span> CSS selector class(es)</dd>
+            
+            <dt class="method-parameter-name">index </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Collection element's index to perform this action on</dd>
+            
+        </dl>
+        <h4 class="subtitle method-subtitle">Returns</h4>
+        <p class="method-return"><code class=" language-javascript">Boolean</code> value for the presence of the CSS selector class(es).</p>
+        <h4 class="subtitle method-subtitle">Like This</h4>
+        <pre class=" language-javascript"><code class=" language-javascript"><span class="token comment" spellcheck="true">// Every &lt;a&gt; has 'light' and 'lite'
 </span>$<span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hasClass<span class="token punctuation">(</span></span><span class="token string">"light lite"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true"> // = true
 </span><span class="token comment" spellcheck="true">
 // Only the  &lt;a&gt; has 'light' but only some have 'lite'
@@ -514,34 +432,28 @@ $<span class="token punctuation">(</span><span class="token string">"a"</span><s
 </span><span class="token comment" spellcheck="true">
 // Granular
 </span>$<span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">hasClass<span class="token punctuation">(</span></span><span class="token string">"light lite"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-            </div>
-        </div>
-    </div></div></div><div class="ur-page" data-id="css" data-index="17"><div class="ur-page-content"><a name="css"></a><div class="wrapper">
-        <h3 class="method-title">css( styles[, value, index] )</h3>
     </div>
-    <div class="wrapper grid-columns">
-        <div class="grid-column grid-column-2">
-            <h4 class="subtitle method-subtitle">Description</h4>
-            <p class="method-description text-with-code">Sets or removes inline styling for every element in the collection, based on the given parameters (or for a specific element).</p>
-            <h4 class="subtitle method-subtitle">Parameters</h4>
-            <dl class="method-parameters">
-                
-                <dt class="method-parameter-name">styles </dt>
-                <dd class="method-parameter-meta"><span class="ur-code"></span> <span class="ur-code">(object)</span> Key-value pairs of CSS properties and their matching values, or <span class="ur-code">(string)</span> the name of a specific CSS property name</dd>
-                
-                <dt class="method-parameter-name">value </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(string)</span> Value for a specific CSS property (when <span class="ur-code">styles</span> is a property name)</dd>
-                
-                <dt class="method-parameter-name">index </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Collection element's index to perform this action on</dd>
-                
-            </dl>
-            <h4 class="subtitle method-subtitle">Returns</h4>
-            <p class="method-return text-with-code">The same <span class="ur-code">Dough</span> object for further method chaining. <strong>Notice</strong>: When <span class="ur-code">styles</span> is the name of a single CSS property and no <span class="ur-code">value</span> is provided - the method will <strong>remove</strong> that property and <strong>won't return its value</strong> (use <code class=" language-javascript">$<span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>styles<span class="token punctuation">.</span>color</code> instead).</p>
-        </div>
-        <div class="grid-column grid-column-3">
-        <div class="grid-column grid-column-wide grid-column-method-example">
-            <pre class=" language-javascript"><code class=" language-javascript"><span class="token comment" spellcheck="true">// Happy birdies, single property
+</div></div></div><div class="ur-page" data-id="css" data-index="17"><div class="ur-page-content"><a name="css"></a><div class="wrapper grid-columns column-mid text-with-code">
+    <div class="grid-column grid-column-3">
+        <h3 class="method-title">css( styles[, value, index] )</h3>
+        <p class="method-description">Sets or removes inline styling for every element in the collection, based on the given parameters (or for a specific element).</p>
+        <h4 class="subtitle method-subtitle">Parameters</h4>
+        <dl class="method-parameters">
+            
+            <dt class="method-parameter-name">styles </dt>
+            <dd class="method-parameter-meta"><span class="ur-code"></span> <code class=" language-javascript"><span class="token punctuation">(</span>object<span class="token punctuation">)</span></code> Key-value pairs of CSS properties and their matching values, or <code class=" language-javascript"><span class="token punctuation">(</span>string<span class="token punctuation">)</span></code> the name of a specific CSS property name</dd>
+            
+            <dt class="method-parameter-name">value </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(string)</span> Value for a specific CSS property (when <code class=" language-javascript">styles</code> is a property name)</dd>
+            
+            <dt class="method-parameter-name">index </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Collection element's index to perform this action on</dd>
+            
+        </dl>
+        <h4 class="subtitle method-subtitle">Returns</h4>
+        <p class="method-return">The same <code class=" language-javascript">Dough</code> object for further method chaining. <strong>Notice</strong>: When <code class=" language-javascript">styles</code> is the name of a single CSS property and no <code class=" language-javascript">value</code> is provided - the method will <strong>remove</strong> that property and <strong>won't return its value</strong> (use <code class=" language-javascript">$<span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>styles<span class="token punctuation">.</span>color</code> instead).</p>
+        <h4 class="subtitle method-subtitle">Like This</h4>
+        <pre class=" language-javascript"><code class=" language-javascript"><span class="token comment" spellcheck="true">// Happy birdies, single property
 </span>$<span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">css<span class="token punctuation">(</span></span><span class="token string">"color"</span><span class="token punctuation">,</span> <span class="token string">"mileycyrus"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 $<span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">css<span class="token punctuation">(</span></span><span class="token string">"color"</span><span class="token punctuation">,</span> <span class="token string">"mileycyrus"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true"> // Happy birdy (Granular)
 </span><span class="token comment" spellcheck="true">
@@ -562,63 +474,51 @@ $<span class="token punctuation">(</span><span class="token string">"a"</span><s
 <span class="token comment" spellcheck="true">
 // This is how you'd retrieve a property's value
 </span>$<span class="token punctuation">(</span><span class="token string">"a"</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">.</span>style<span class="token punctuation">.</span>color<span class="token punctuation">;</span><span class="token comment" spellcheck="true"> // Since forever</span></code></pre>
-            </div>
-        </div>
-    </div></div></div><div class="ur-page" data-id="transform" data-index="18"><div class="ur-page-content"><a name="transform"></a><div class="wrapper">
+    </div>
+</div></div></div><div class="ur-page" data-id="transform" data-index="18"><div class="ur-page-content"><a name="transform"></a><div class="wrapper grid-columns column-mid text-with-code">
+    <div class="grid-column grid-column-3">
         <h3 class="method-title">transform( transformFn[, index ] )</h3>
-    </div>
-    <div class="wrapper grid-columns">
-        <div class="grid-column grid-column-2">
-            <h4 class="subtitle method-subtitle">Description</h4>
-            <p class="method-description text-with-code">Sets the CSS transform property of every element in the collection (or of a specific element).</p>
-            <h4 class="subtitle method-subtitle">Parameters</h4>
-            <dl class="method-parameters">
-                
-                <dt class="method-parameter-name">transformFn </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(string)</span> CSS transform function(s)</dd>
-                
-                <dt class="method-parameter-name">index </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Collection element's index to perform this action on</dd>
-                
-            </dl>
-            <h4 class="subtitle method-subtitle">Returns</h4>
-            <p class="method-return text-with-code">The same <span class="ur-code">Dough</span> object for further method chaining.</p>
-        </div>
-        <div class="grid-column grid-column-3">
-        <div class="grid-column grid-column-wide grid-column-method-example">
-            <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">(</span><span class="token string">".ball"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">transform<span class="token punctuation">(</span></span><span class="token string">"rotateY(90deg)"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <p class="method-description">Sets the CSS transform property of every element in the collection (or of a specific element).</p>
+        <h4 class="subtitle method-subtitle">Parameters</h4>
+        <dl class="method-parameters">
+            
+            <dt class="method-parameter-name">transformFn </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(string)</span> CSS transform function(s)</dd>
+            
+            <dt class="method-parameter-name">index </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Collection element's index to perform this action on</dd>
+            
+        </dl>
+        <h4 class="subtitle method-subtitle">Returns</h4>
+        <p class="method-return">The same <code class=" language-javascript">Dough</code> object for further method chaining.</p>
+        <h4 class="subtitle method-subtitle">Like This</h4>
+        <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">(</span><span class="token string">".ball"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">transform<span class="token punctuation">(</span></span><span class="token string">"rotateY(90deg)"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 $<span class="token punctuation">(</span><span class="token string">".ball"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">transform<span class="token punctuation">(</span></span><span class="token string">"rotateY(90deg)"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true"> // Granular</span></code></pre>
-            </div>
-        </div>
-    </div></div></div><div class="ur-page" data-id="translate" data-index="19"><div class="ur-page-content"><a name="translate"></a><div class="wrapper">
-        <h3 class="method-title">translate( [ x, y, z, index ] )</h3>
     </div>
-    <div class="wrapper grid-columns">
-        <div class="grid-column grid-column-2">
-            <h4 class="subtitle method-subtitle">Description</h4>
-            <p class="method-description text-with-code">Sets a CSS translate3d() method to every element in the collection (or of a specific element). <strong>Notice</strong>: This method isn't compatible (yet) with percentage and em values.</p>
-            <h4 class="subtitle method-subtitle">Parameters</h4>
-            <dl class="method-parameters">
-                
-                <dt class="method-parameter-name">x </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Number of pixels to move on the X axis</dd>
-                
-                <dt class="method-parameter-name">y </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Number of pixels to move on the Y axis</dd>
-                
-                <dt class="method-parameter-name">z </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Number of pixels to move on the Z axis</dd>
-                
-                <dt class="method-parameter-name">index </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Collection element's index to perform this action on</dd>
-                
-            </dl>
-            <h4 class="subtitle method-subtitle">Returns</h4>
-            <p class="method-return text-with-code">The same <span class="ur-code">Dough</span> object for further method chaining.</p>
-        </div>
-        <div class="grid-column grid-column-3">
-        <div class="grid-column grid-column-wide grid-column-method-example">
-            <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">(</span><span class="token string">".box"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">translate<span class="token punctuation">(</span></span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+</div></div></div><div class="ur-page" data-id="translate" data-index="19"><div class="ur-page-content"><a name="translate"></a><div class="wrapper grid-columns column-mid text-with-code">
+    <div class="grid-column grid-column-3">
+        <h3 class="method-title">translate( [ x, y, z, index ] )</h3>
+        <p class="method-description">Sets a CSS translate3d() method to every element in the collection (or of a specific element). <strong>Notice</strong>: This method isn't compatible (yet) with percentage and em values.</p>
+        <h4 class="subtitle method-subtitle">Parameters</h4>
+        <dl class="method-parameters">
+            
+            <dt class="method-parameter-name">x </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Number of pixels to move on the X axis</dd>
+            
+            <dt class="method-parameter-name">y </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Number of pixels to move on the Y axis</dd>
+            
+            <dt class="method-parameter-name">z </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Number of pixels to move on the Z axis</dd>
+            
+            <dt class="method-parameter-name">index </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Collection element's index to perform this action on</dd>
+            
+        </dl>
+        <h4 class="subtitle method-subtitle">Returns</h4>
+        <p class="method-return">The same <code class=" language-javascript">Dough</code> object for further method chaining.</p>
+        <h4 class="subtitle method-subtitle">Like This</h4>
+        <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">(</span><span class="token string">".box"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">translate<span class="token punctuation">(</span></span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 $<span class="token punctuation">(</span><span class="token string">".box"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">translate<span class="token punctuation">(</span></span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true"> // Granular
 </span><span class="token comment" spellcheck="true">// = translate3d(10px, 20px, 30px)
 </span>
@@ -633,44 +533,38 @@ $<span class="token punctuation">(</span><span class="token string">".box"</span
 // = translate3d(0, 0, 0)
 </span><span class="token comment" spellcheck="true">// For completely removing the transform
 </span><span class="token comment" spellcheck="true">// function use resetTranslate()</span></code></pre>
-            </div>
-        </div>
-    </div></div></div><div class="ur-page chapter" data-id="chapter-events" data-index="20"><div class="ur-page-content"><a name="chapter-events"></a><div class="wrapper section-page">
-        <div class="column-mid">
-            <div class="section-image-wrapper">
-                <div class="section-image section-events"></div>
-            </div>
-            <h2 class="section-title">Events</h2>
-        </div>
-    </div></div></div><div class="ur-page" data-id="on" data-index="21"><div class="ur-page-content"><a name="on"></a><div class="wrapper">
-        <h3 class="method-title">on( event, fn[, options, index ] )</h3>
     </div>
-    <div class="wrapper grid-columns">
-        <div class="grid-column grid-column-2">
-            <h4 class="subtitle method-subtitle">Description</h4>
-            <p class="method-description text-with-code">Attaches an event-handling method to every element in the collection (or to a specific element). <strong>Notice</strong>: <span class="ur-code">on()</span> will detach any previously set event handlers configured by <span class="ur-code">on()</span>.</p>
-            <h4 class="subtitle method-subtitle">Parameters</h4>
-            <dl class="method-parameters">
-                
-                <dt class="method-parameter-name">event </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(string)</span> Name of event to attach the method to</dd>
-                
-                <dt class="method-parameter-name">fn </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(function)</span> Method to execute when event is triggere</dd>
-                
-                <dt class="method-parameter-name">options </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(object)</span> Key-value pairs of event options. Supported values are <span class="ur-code">isCaptured</span>, a boolean flag for creating an event listener using the capture event processing</dd>
-                
-                <dt class="method-parameter-name">index </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Collection element's index to perform this action on</dd>
-                
-            </dl>
-            <h4 class="subtitle method-subtitle">Returns</h4>
-            <p class="method-return text-with-code">The same <span class="ur-code">Dough</span> object for further method chaining.</p>
+</div></div></div><div class="ur-page chapter" data-id="chapter-events" data-index="20"><div class="ur-page-content"><a name="chapter-events"></a><div class="wrapper section-page">
+    <div class="column-mid">
+        <div class="section-image-wrapper">
+            <div class="section-image section-events"></div>
         </div>
-        <div class="grid-column grid-column-3">
-        <div class="grid-column grid-column-wide grid-column-method-example">
-            <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">(</span><span class="token string">".button-heavy"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">on<span class="token punctuation">(</span></span><span class="token string">"click"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <h2 class="section-title">Events</h2>
+    </div>
+</div></div></div><div class="ur-page" data-id="on" data-index="21"><div class="ur-page-content"><a name="on"></a><div class="wrapper grid-columns column-mid text-with-code">
+    <div class="grid-column grid-column-3">
+        <h3 class="method-title">on( event, fn[, options, index ] )</h3>
+        <p class="method-description">Attaches an event-handling method to every element in the collection (or to a specific element). <strong>Notice</strong>: <code class=" language-javascript"><span class="token function">on<span class="token punctuation">(</span></span><span class="token punctuation">)</span></code> will detach any previously set event handlers configured by <code class=" language-javascript"><span class="token function">on<span class="token punctuation">(</span></span><span class="token punctuation">)</span></code>.</p>
+        <h4 class="subtitle method-subtitle">Parameters</h4>
+        <dl class="method-parameters">
+            
+            <dt class="method-parameter-name">event </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(string)</span> Name of event to attach the method to</dd>
+            
+            <dt class="method-parameter-name">fn </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(function)</span> Method to execute when event is triggered</dd>
+            
+            <dt class="method-parameter-name">options </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(object)</span> Key-value pairs of event options. Supported values are <code class=" language-javascript">isCaptured</code>, a boolean flag for creating an event listener using the capture event processing</dd>
+            
+            <dt class="method-parameter-name">index </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Collection element's index to perform this action on</dd>
+            
+        </dl>
+        <h4 class="subtitle method-subtitle">Returns</h4>
+        <p class="method-return">The same <code class=" language-javascript">Dough</code> object for further method chaining.</p>
+        <h4 class="subtitle method-subtitle">Like This</h4>
+        <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">(</span><span class="token string">".button-heavy"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">on<span class="token punctuation">(</span></span><span class="token string">"click"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">"Bootylicious"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 $<span class="token punctuation">(</span><span class="token string">".button-heavy"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">on<span class="token punctuation">(</span></span><span class="token string">"click"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
@@ -684,117 +578,93 @@ $<span class="token punctuation">(</span><span class="token string">".button-hea
 $<span class="token punctuation">(</span><span class="token string">".button-heavy"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">on<span class="token punctuation">(</span></span><span class="token string">"click"</span><span class="token punctuation">,</span> <span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">"Bootylicious"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token punctuation">{</span> isCapture<span class="token punctuation">:</span> <span class="token keyword">true</span> <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true"> // Granular</span></code></pre>
-            </div>
-        </div>
-    </div></div></div><div class="ur-page" data-id="off" data-index="22"><div class="ur-page-content"><a name="off"></a><div class="wrapper">
+    </div>
+</div></div></div><div class="ur-page" data-id="off" data-index="22"><div class="ur-page-content"><a name="off"></a><div class="wrapper grid-columns column-mid text-with-code">
+    <div class="grid-column grid-column-3">
         <h3 class="method-title">off( event[, index ] )</h3>
-    </div>
-    <div class="wrapper grid-columns">
-        <div class="grid-column grid-column-2">
-            <h4 class="subtitle method-subtitle">Description</h4>
-            <p class="method-description text-with-code">Detaches a previously set event-handling method from every element in the collection (or from a specific element).</p>
-            <h4 class="subtitle method-subtitle">Parameters</h4>
-            <dl class="method-parameters">
-                
-                <dt class="method-parameter-name">event </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(string)</span> Name of event to detach its event handler</dd>
-                
-                <dt class="method-parameter-name">index </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Collection element's index to perform this action on</dd>
-                
-            </dl>
-            <h4 class="subtitle method-subtitle">Returns</h4>
-            <p class="method-return text-with-code">The same <span class="ur-code">Dough</span> object for further method chaining.</p>
-        </div>
-        <div class="grid-column grid-column-3">
-        <div class="grid-column grid-column-wide grid-column-method-example">
-            <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">(</span><span class="token string">".super-form"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">off<span class="token punctuation">(</span></span><span class="token string">"submit"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <p class="method-description">Detaches a previously set event-handling method from every element in the collection (or from a specific element).</p>
+        <h4 class="subtitle method-subtitle">Parameters</h4>
+        <dl class="method-parameters">
+            
+            <dt class="method-parameter-name">event </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(string)</span> Name of event to detach its event handler</dd>
+            
+            <dt class="method-parameter-name">index </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Collection element's index to perform this action on</dd>
+            
+        </dl>
+        <h4 class="subtitle method-subtitle">Returns</h4>
+        <p class="method-return">The same <code class=" language-javascript">Dough</code> object for further method chaining.</p>
+        <h4 class="subtitle method-subtitle">Like This</h4>
+        <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">(</span><span class="token string">".super-form"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">off<span class="token punctuation">(</span></span><span class="token string">"submit"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 $<span class="token punctuation">(</span><span class="token string">".super-form"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">off<span class="token punctuation">(</span></span><span class="token string">"submit"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true"> // Granular</span></code></pre>
-            </div>
-        </div>
-    </div></div></div><div class="ur-page" data-id="trigger" data-index="23"><div class="ur-page-content"><a name="trigger"></a><div class="wrapper">
+    </div>
+</div></div></div><div class="ur-page" data-id="trigger" data-index="23"><div class="ur-page-content"><a name="trigger"></a><div class="wrapper grid-columns column-mid text-with-code">
+    <div class="grid-column grid-column-3">
         <h3 class="method-title">trigger( event[, index ] )</h3>
-    </div>
-    <div class="wrapper grid-columns">
-        <div class="grid-column grid-column-2">
-            <h4 class="subtitle method-subtitle">Description</h4>
-            <p class="method-description text-with-code">Invokes a previously set event-handling method for every element in the collection (or for a specific element).</p>
-            <h4 class="subtitle method-subtitle">Parameters</h4>
-            <dl class="method-parameters">
-                
-                <dt class="method-parameter-name">event </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(string)</span> Name of event to invoke its event handler</dd>
-                
-                <dt class="method-parameter-name">index </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Collection element's index to perform this action on</dd>
-                
-            </dl>
-            <h4 class="subtitle method-subtitle">Returns</h4>
-            <p class="method-return text-with-code">The same <span class="ur-code">Dough</span> object for further method chaining.</p>
-        </div>
-        <div class="grid-column grid-column-3">
-        <div class="grid-column grid-column-wide grid-column-method-example">
-            <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">(</span><span class="token string">".button-heavy"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trigger<span class="token punctuation">(</span></span><span class="token string">"submit"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <p class="method-description">Invokes a previously set event-handling method for every element in the collection (or for a specific element).</p>
+        <h4 class="subtitle method-subtitle">Parameters</h4>
+        <dl class="method-parameters">
+            
+            <dt class="method-parameter-name">event </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(string)</span> Name of event to invoke its event handler</dd>
+            
+            <dt class="method-parameter-name">index </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Collection element's index to perform this action on</dd>
+            
+        </dl>
+        <h4 class="subtitle method-subtitle">Returns</h4>
+        <p class="method-return">The same <code class=" language-javascript">Dough</code> object for further method chaining.</p>
+        <h4 class="subtitle method-subtitle">Like This</h4>
+        <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">(</span><span class="token string">".button-heavy"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trigger<span class="token punctuation">(</span></span><span class="token string">"submit"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 $<span class="token punctuation">(</span><span class="token string">".button-heavy"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">trigger<span class="token punctuation">(</span></span><span class="token string">"submit"</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true"> // Granular</span></code></pre>
-            </div>
-        </div>
-    </div></div></div><div class="ur-page" data-id="click" data-index="24"><div class="ur-page-content"><a name="click"></a><div class="wrapper">
-        <h3 class="method-title">click( fn[, index ] )</h3>
     </div>
-    <div class="wrapper grid-columns">
-        <div class="grid-column grid-column-2">
-            <h4 class="subtitle method-subtitle">Description</h4>
-            <p class="method-description text-with-code">Attaches an synthesized pointer click event-handling method, which supports both mouse click and touch tap, to every element in the collection (or to a specific element). When being pressed/tapped, a <code class=" language-javascript"><span class="token string">"pressed"</span></code> CSS selector class is added to the element(s).</p>
-            <h4 class="subtitle method-subtitle">Parameters</h4>
-            <dl class="method-parameters">
-                
-                <dt class="method-parameter-name">fn </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(function)</span> Method to execute when event is triggere</dd>
-                
-                <dt class="method-parameter-name">index </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Collection element's index to perform this action on</dd>
-                
-            </dl>
-            <h4 class="subtitle method-subtitle">Returns</h4>
-            <p class="method-return text-with-code">The same <span class="ur-code">Dough</span> object for further method chaining.</p>
-        </div>
-        <div class="grid-column grid-column-3">
-        <div class="grid-column grid-column-wide grid-column-method-example">
-            <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">(</span><span class="token string">".button-mister"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">click<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+</div></div></div><div class="ur-page" data-id="click" data-index="24"><div class="ur-page-content"><a name="click"></a><div class="wrapper grid-columns column-mid text-with-code">
+    <div class="grid-column grid-column-3">
+        <h3 class="method-title">click( fn[, index ] )</h3>
+        <p class="method-description">Attaches an synthesized pointer click event-handling method, which supports both mouse click and touch tap, to every element in the collection (or to a specific element). When being pressed/tapped, a <code class=" language-javascript"><span class="token string">"pressed"</span></code> CSS selector class is added to the element(s).</p>
+        <h4 class="subtitle method-subtitle">Parameters</h4>
+        <dl class="method-parameters">
+            
+            <dt class="method-parameter-name">fn </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(function)</span> Method to execute when event is triggered</dd>
+            
+            <dt class="method-parameter-name">index </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(integer)</span> Collection element's index to perform this action on</dd>
+            
+        </dl>
+        <h4 class="subtitle method-subtitle">Returns</h4>
+        <p class="method-return">The same <code class=" language-javascript">Dough</code> object for further method chaining.</p>
+        <h4 class="subtitle method-subtitle">Like This</h4>
+        <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">(</span><span class="token string">".button-mister"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">click<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">"click / tap"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 $<span class="token punctuation">(</span><span class="token string">".button-mister"</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">click<span class="token punctuation">(</span></span><span class="token keyword">function</span><span class="token punctuation">(</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
     console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">"click / tap"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 <span class="token punctuation">}</span><span class="token punctuation">,</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true"> // Granular</span></code></pre>
-            </div>
-        </div>
-    </div></div></div><div class="ur-page chapter" data-id="chapter-requests" data-index="25"><div class="ur-page-content"><a name="chapter-requests"></a><div class="wrapper section-page">
-        <div class="column-mid">
-            <div class="section-image-wrapper">
-                <div class="section-image section-requests"></div>
-            </div>
-            <h2 class="section-title">Requests</h2>
-        </div>
-    </div></div></div><div class="ur-page" data-id="ajax" data-index="26"><div class="ur-page-content"><a name="ajax"></a><div class="wrapper">
-        <h3 class="method-title">$.ajax( options )</h3>
     </div>
-    <div class="wrapper grid-columns">
-        <div class="grid-column grid-column-2">
-            <h4 class="subtitle method-subtitle">Description</h4>
-            <p class="method-description text-with-code">Performs an AJAX request using the given options. Supported options: </p><dl class="method-parameters"><dt class="method-parameter-name">type </dt><dd class="method-parameter-meta"><span class="ur-code">(string)</span>HTTP request method: "GET" or "POST" (case-insensitive)</dd><dt class="method-parameter-name">url </dt><dd class="method-parameter-meta"><span class="ur-code">(string)</span>URL to send the request to</dd><dt class="method-parameter-name">contentType </dt><dd class="method-parameter-meta"><span class="ur-code">(string)</span>The type of data sent to the server (as HTTP Content-Type header), such as `application/json` (default: `application/json` for <span class="ur-code">GET</span> requests and `application/x-www-form-urlencoded` for <span class="ur-code">POST</span>)</dd><dt class="method-parameter-name">charset </dt><dd class="method-parameter-meta"><span class="ur-code">(string)</span>Request encoding (default: `UTF-8`)</dd><dt class="method-parameter-name">data </dt><dd class="method-parameter-meta"><span class="ur-code">(object)</span>Key-value pairs of properties and their values to post to the server (also good for GET requests)</dd><dt class="method-parameter-name">success </dt><dd class="method-parameter-meta"><span class="ur-code">(function)</span>Method to invoke upon request success. The method is provided with the response data as its argument (when using `application/json` content type, the data is already provided as a parsed object)</dd><dt class="method-parameter-name">error </dt><dd class="method-parameter-meta"><span class="ur-code">(function)</span>Method to invoke upon request error. The method is provided with request HTTP status code as its argument</dd><dt class="method-parameter-name">parseError </dt><dd class="method-parameter-meta"><span class="ur-code">(function)</span>Method to invoke upon JSON parsing error (when using `application/json` content type). The method is provided with the exception object as its argument</dd></dl><p></p>
-            <h4 class="subtitle method-subtitle">Parameters</h4>
-            <dl class="method-parameters">
-                
-                <dt class="method-parameter-name">options </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(object)</span> Key-value pairs of request options</dd>
-                
-            </dl>
-            <h4 class="subtitle method-subtitle">Returns</h4>
-            <p class="method-return text-with-code">Nothing</p>
+</div></div></div><div class="ur-page chapter" data-id="chapter-requests" data-index="25"><div class="ur-page-content"><a name="chapter-requests"></a><div class="wrapper section-page">
+    <div class="column-mid">
+        <div class="section-image-wrapper">
+            <div class="section-image section-requests"></div>
         </div>
-        <div class="grid-column grid-column-3">
-        <div class="grid-column grid-column-wide grid-column-method-example">
-            <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">.</span><span class="token function">ajax<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+        <h2 class="section-title">Requests</h2>
+    </div>
+</div></div></div><div class="ur-page" data-id="ajax" data-index="26"><div class="ur-page-content"><a name="ajax"></a><div class="wrapper grid-columns column-mid text-with-code">
+    <div class="grid-column grid-column-3">
+        <h3 class="method-title">$.ajax( options )</h3>
+        <p class="method-description">Performs an AJAX request using the given options.</p>
+        <h4 class="subtitle method-subtitle">Parameters</h4>
+        <dl class="method-parameters">
+            
+            <dt class="method-parameter-name">options </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(object)</span> Key-value pairs of request options.<br>Supported options: <dl class="method-parameters"><dt class="method-parameter-name">type </dt><dd class="method-parameter-meta"><span class="ur-code">(string)</span>HTTP request method: "GET" or "POST" (case-insensitive)</dd><dt class="method-parameter-name">url </dt><dd class="method-parameter-meta"><span class="ur-code">(string)</span>URL to send the request to</dd><dt class="method-parameter-name">contentType </dt><dd class="method-parameter-meta"><span class="ur-code">(string)</span>The type of data sent to the server (as HTTP Content-Type header), such as `application/json` (default: `application/json` for <code class=" language-javascript">GET</code> requests and `application/x-www-form-urlencoded` for <code class=" language-javascript">POST</code>)</dd><dt class="method-parameter-name">charset </dt><dd class="method-parameter-meta"><span class="ur-code">(string)</span>Request encoding (default: `UTF-8`)</dd><dt class="method-parameter-name">data </dt><dd class="method-parameter-meta"><span class="ur-code">(object)</span>Key-value pairs of properties and their values to post to the server (also good for GET requests)</dd><dt class="method-parameter-name">success </dt><dd class="method-parameter-meta"><span class="ur-code">(function)</span>Method to invoke upon request success. The method is provided with the response data as its argument (when using `application/json` content type, the data is already provided as a parsed object)</dd><dt class="method-parameter-name">error </dt><dd class="method-parameter-meta"><span class="ur-code">(function)</span>Method to invoke upon request error. The method is provided with request HTTP status code as its argument</dd><dt class="method-parameter-name">parseError </dt><dd class="method-parameter-meta"><span class="ur-code">(function)</span>Method to invoke upon JSON parsing error (when using `application/json` content type). The method is provided with the exception object as its argument</dd></dl></dd>
+            
+        </dl>
+        <h4 class="subtitle method-subtitle">Returns</h4>
+        <p class="method-return">Nothing</p>
+        <h4 class="subtitle method-subtitle">Like This</h4>
+        <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">.</span><span class="token function">ajax<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
     type<span class="token punctuation">:</span> <span class="token string">"get"</span><span class="token punctuation">,</span>
     url<span class="token punctuation">:</span> <span class="token string">"http://my.self/api/songs"</span><span class="token punctuation">,</span>
     data<span class="token punctuation">:</span> <span class="token punctuation">{</span> artist<span class="token punctuation">:</span> <span class="token string">"Selena Gomez"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
@@ -812,56 +682,44 @@ $<span class="token punctuation">(</span><span class="token string">".button-mis
         <span class="token punctuation">}</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-            </div>
-        </div>
-    </div></div></div><div class="ur-page" data-id="get" data-index="27"><div class="ur-page-content"><a name="get"></a><div class="wrapper">
-        <h3 class="method-title">$.get( options )</h3>
     </div>
-    <div class="wrapper grid-columns">
-        <div class="grid-column grid-column-2">
-            <h4 class="subtitle method-subtitle">Description</h4>
-            <p class="method-description text-with-code">Performs an AJAX GET request using the given options (See <span class="ur-code">ajax()</span> method options for reference).</p>
-            <h4 class="subtitle method-subtitle">Parameters</h4>
-            <dl class="method-parameters">
-                
-                <dt class="method-parameter-name">options </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(object)</span> Key-value pairs of request options</dd>
-                
-            </dl>
-            <h4 class="subtitle method-subtitle">Returns</h4>
-            <p class="method-return text-with-code">Nothing</p>
-        </div>
-        <div class="grid-column grid-column-3">
-        <div class="grid-column grid-column-wide grid-column-method-example">
-            <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+</div></div></div><div class="ur-page" data-id="get" data-index="27"><div class="ur-page-content"><a name="get"></a><div class="wrapper grid-columns column-mid text-with-code">
+    <div class="grid-column grid-column-3">
+        <h3 class="method-title">$.get( options )</h3>
+        <p class="method-description">Performs an AJAX GET request using the given options (See <code class=" language-javascript"><span class="token function">ajax<span class="token punctuation">(</span></span><span class="token punctuation">)</span></code> method options for reference).</p>
+        <h4 class="subtitle method-subtitle">Parameters</h4>
+        <dl class="method-parameters">
+            
+            <dt class="method-parameter-name">options </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(object)</span> Key-value pairs of request options</dd>
+            
+        </dl>
+        <h4 class="subtitle method-subtitle">Returns</h4>
+        <p class="method-return">Nothing</p>
+        <h4 class="subtitle method-subtitle">Like This</h4>
+        <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">.</span><span class="token keyword">get</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
     url<span class="token punctuation">:</span> <span class="token string">"http://my.self/api/songs"</span><span class="token punctuation">,</span>
     data<span class="token punctuation">:</span> <span class="token punctuation">{</span> artist<span class="token punctuation">:</span> <span class="token string">"Selena Gomez"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
     success<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
         console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">"I've got "</span> <span class="token operator">+</span> data<span class="token punctuation">.</span>length <span class="token operator">+</span> <span class="token string">" songs in my library, damn!"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
     <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-            </div>
-        </div>
-    </div></div></div><div class="ur-page" data-id="post" data-index="28"><div class="ur-page-content"><a name="post"></a><div class="wrapper">
-        <h3 class="method-title">$.post( options )</h3>
     </div>
-    <div class="wrapper grid-columns">
-        <div class="grid-column grid-column-2">
-            <h4 class="subtitle method-subtitle">Description</h4>
-            <p class="method-description text-with-code">Performs an AJAX POST request using the given options (See <span class="ur-code">ajax()</span> method options for reference).</p>
-            <h4 class="subtitle method-subtitle">Parameters</h4>
-            <dl class="method-parameters">
-                
-                <dt class="method-parameter-name">options </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(object)</span> Key-value pairs of request options</dd>
-                
-            </dl>
-            <h4 class="subtitle method-subtitle">Returns</h4>
-            <p class="method-return text-with-code">Nothing</p>
-        </div>
-        <div class="grid-column grid-column-3">
-        <div class="grid-column grid-column-wide grid-column-method-example">
-            <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">.</span><span class="token function">post<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+</div></div></div><div class="ur-page" data-id="post" data-index="28"><div class="ur-page-content"><a name="post"></a><div class="wrapper grid-columns column-mid text-with-code">
+    <div class="grid-column grid-column-3">
+        <h3 class="method-title">$.post( options )</h3>
+        <p class="method-description">Performs an AJAX POST request using the given options (See <code class=" language-javascript"><span class="token function">ajax<span class="token punctuation">(</span></span><span class="token punctuation">)</span></code> method options for reference).</p>
+        <h4 class="subtitle method-subtitle">Parameters</h4>
+        <dl class="method-parameters">
+            
+            <dt class="method-parameter-name">options </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(object)</span> Key-value pairs of request options</dd>
+            
+        </dl>
+        <h4 class="subtitle method-subtitle">Returns</h4>
+        <p class="method-return">Nothing</p>
+        <h4 class="subtitle method-subtitle">Like This</h4>
+        <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">.</span><span class="token function">post<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
     url<span class="token punctuation">:</span> <span class="token string">"http://my.self/api/artist"</span><span class="token punctuation">,</span>
     data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
         name<span class="token punctuation">:</span> <span class="token string">"Miley Cyrus"</span><span class="token punctuation">,</span>
@@ -871,28 +729,22 @@ $<span class="token punctuation">(</span><span class="token string">".button-mis
     <span class="token comment" spellcheck="true">  // Great success!
 </span> <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-            </div>
-        </div>
-    </div></div></div><div class="ur-page" data-id="put" data-index="29"><div class="ur-page-content"><a name="put"></a><div class="wrapper">
-        <h3 class="method-title">$.put( options )</h3>
     </div>
-    <div class="wrapper grid-columns">
-        <div class="grid-column grid-column-2">
-            <h4 class="subtitle method-subtitle">Description</h4>
-            <p class="method-description text-with-code">Performs an AJAX PUT request using the given options (See <span class="ur-code">ajax()</span> method options for reference).</p>
-            <h4 class="subtitle method-subtitle">Parameters</h4>
-            <dl class="method-parameters">
-                
-                <dt class="method-parameter-name">options </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(object)</span> Key-value pairs of request options</dd>
-                
-            </dl>
-            <h4 class="subtitle method-subtitle">Returns</h4>
-            <p class="method-return text-with-code">Nothing</p>
-        </div>
-        <div class="grid-column grid-column-3">
-        <div class="grid-column grid-column-wide grid-column-method-example">
-            <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">.</span><span class="token function">put<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+</div></div></div><div class="ur-page" data-id="put" data-index="29"><div class="ur-page-content"><a name="put"></a><div class="wrapper grid-columns column-mid text-with-code">
+    <div class="grid-column grid-column-3">
+        <h3 class="method-title">$.put( options )</h3>
+        <p class="method-description">Performs an AJAX PUT request using the given options (See <code class=" language-javascript"><span class="token function">ajax<span class="token punctuation">(</span></span><span class="token punctuation">)</span></code> method options for reference).</p>
+        <h4 class="subtitle method-subtitle">Parameters</h4>
+        <dl class="method-parameters">
+            
+            <dt class="method-parameter-name">options </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(object)</span> Key-value pairs of request options</dd>
+            
+        </dl>
+        <h4 class="subtitle method-subtitle">Returns</h4>
+        <p class="method-return">Nothing</p>
+        <h4 class="subtitle method-subtitle">Like This</h4>
+        <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">.</span><span class="token function">put<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
     url<span class="token punctuation">:</span> <span class="token string">"http://my.self/api/artist"</span><span class="token punctuation">,</span>
     data<span class="token punctuation">:</span> <span class="token punctuation">{</span>
         identifier<span class="token punctuation">:</span> <span class="token string">"miley-cyrus"</span><span class="token punctuation">,</span>
@@ -900,115 +752,93 @@ $<span class="token punctuation">(</span><span class="token string">".button-mis
     <span class="token punctuation">}</span><span class="token punctuation">,</span>
     success<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
     <span class="token comment" spellcheck="true">  // Great success!
-    </span><span class="token punctuation">}</span>
+</span> <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-            </div>
-        </div>
-    </div></div></div><div class="ur-page" data-id="del" data-index="30"><div class="ur-page-content"><a name="del"></a><div class="wrapper">
-        <h3 class="method-title">$.del( options )</h3>
     </div>
-    <div class="wrapper grid-columns">
-        <div class="grid-column grid-column-2">
-            <h4 class="subtitle method-subtitle">Description</h4>
-            <p class="method-description text-with-code">Performs an AJAX DELETE request using the given options (See <span class="ur-code">ajax()</span> method options for reference).</p>
-            <h4 class="subtitle method-subtitle">Parameters</h4>
-            <dl class="method-parameters">
-                
-                <dt class="method-parameter-name">options </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(object)</span> Key-value pairs of request options</dd>
-                
-            </dl>
-            <h4 class="subtitle method-subtitle">Returns</h4>
-            <p class="method-return text-with-code">Nothing</p>
-        </div>
-        <div class="grid-column grid-column-3">
-        <div class="grid-column grid-column-wide grid-column-method-example">
-            <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">.</span><span class="token function">del<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+</div></div></div><div class="ur-page" data-id="del" data-index="30"><div class="ur-page-content"><a name="del"></a><div class="wrapper grid-columns column-mid text-with-code">
+    <div class="grid-column grid-column-3">
+        <h3 class="method-title">$.del( options )</h3>
+        <p class="method-description">Performs an AJAX DELETE request using the given options (See <code class=" language-javascript"><span class="token function">ajax<span class="token punctuation">(</span></span><span class="token punctuation">)</span></code> method options for reference).</p>
+        <h4 class="subtitle method-subtitle">Parameters</h4>
+        <dl class="method-parameters">
+            
+            <dt class="method-parameter-name">options </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(object)</span> Key-value pairs of request options</dd>
+            
+        </dl>
+        <h4 class="subtitle method-subtitle">Returns</h4>
+        <p class="method-return">Nothing</p>
+        <h4 class="subtitle method-subtitle">Like This</h4>
+        <pre class=" language-javascript"><code class=" language-javascript">$<span class="token punctuation">.</span><span class="token function">del<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
     url<span class="token punctuation">:</span> <span class="token string">"http://my.self/api/artist"</span><span class="token punctuation">,</span>
     data<span class="token punctuation">:</span> <span class="token punctuation">{</span> identifier<span class="token punctuation">:</span> <span class="token string">"hannah-montana"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
     success<span class="token punctuation">:</span> <span class="token keyword">function</span><span class="token punctuation">(</span>data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
-    <span class="token comment" spellcheck="true">  // Great success!</span>
-    <span class="token punctuation">}</span>
+    <span class="token comment" spellcheck="true">  // Great success!
+</span> <span class="token punctuation">}</span>
 <span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span></code></pre>
-            </div>
-        </div>
-    </div></div></div><div class="ur-page" data-id="jsonp" data-index="31"><div class="ur-page-content"><a name="jsonp"></a><div class="wrapper">
+    </div>
+</div></div></div><div class="ur-page" data-id="jsonp" data-index="31"><div class="ur-page-content"><a name="jsonp"></a><div class="wrapper grid-columns column-mid text-with-code">
+    <div class="grid-column grid-column-3">
         <h3 class="method-title">$.jsonp( options )</h3>
+        <p class="method-description">Performs a cross-domain request using JSONP.</p>
+        <h4 class="subtitle method-subtitle">Parameters</h4>
+        <dl class="method-parameters">
+            
+            <dt class="method-parameter-name">options </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(object)</span> Key-value pairs of request options.<br>Supported options: <dl class="method-parameters text-with-code"><dt class="method-parameter-name">url </dt><dd class="method-parameter-meta"><span class="ur-code">(string)</span>URL to send the request to</dd><dt class="method-parameter-name">callback </dt><dd class="method-parameter-meta"><span class="ur-code">(string)</span>Name of the method to invoke upon request success</dd><dt class="method-parameter-name">cbParam </dt><dd class="method-parameter-meta"><span class="ur-code">(string)</span>Name of the callback parameter in the request URL (default: <code class=" language-javascript"><span class="token string">"callback"</span></code>)</dd></dl></dd>
+            
+        </dl>
+        <h4 class="subtitle method-subtitle">Returns</h4>
+        <p class="method-return">Nothing</p>
+        <h4 class="subtitle method-subtitle">Like This</h4>
+        <pre class=" language-javascript"><code class=" language-javascript"><span class="token keyword">function</span> <span class="token function">albums_callback<span class="token punctuation">(</span></span>data<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    console<span class="token punctuation">.</span><span class="token function">log<span class="token punctuation">(</span></span><span class="token string">"Got data"</span><span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+
+$<span class="token punctuation">.</span><span class="token function">jsonp<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+    url<span class="token punctuation">:</span> <span class="token string">"http://my.self/api/albums"</span>
+    data<span class="token punctuation">:</span> <span class="token punctuation">{</span> order<span class="token punctuation">:</span> <span class="token string">"desc"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    callback<span class="token punctuation">:</span> <span class="token string">"albums_callback"</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">
+// = http://my.self/api/albums&amp;callback=albums_callback&amp;order=desc
+</span><span class="token comment" spellcheck="true">
+// And now with custom callback parameter
+</span>$<span class="token punctuation">.</span><span class="token function">jsonp<span class="token punctuation">(</span></span><span class="token punctuation">{</span>
+    url<span class="token punctuation">:</span> <span class="token string">"http://my.self/api/albums"</span>
+    data<span class="token punctuation">:</span> <span class="token punctuation">{</span> order<span class="token punctuation">:</span> <span class="token string">"desc"</span> <span class="token punctuation">}</span><span class="token punctuation">,</span>
+    callback<span class="token punctuation">:</span> <span class="token string">"albums_callback"</span><span class="token punctuation">,</span>
+    cbParam<span class="token punctuation">:</span> <span class="token string">"returnCallback"</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">
+// = http://my.self/api/albums&amp;returnCallback=albums_callback&amp;order=desc</span></code></pre>
     </div>
-    <div class="wrapper grid-columns">
-        <div class="grid-column grid-column-2">
-            <h4 class="subtitle method-subtitle">Description</h4>
-            <p class="method-description text-with-code"></p>
-            <h4 class="subtitle method-subtitle">Parameters</h4>
-            <dl class="method-parameters">
-                
-                <dt class="method-parameter-name">options </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(object)</span> Key-value pairs of request options</dd>
-                
-            </dl>
-            <h4 class="subtitle method-subtitle">Returns</h4>
-            <p class="method-return text-with-code">Nothing</p>
+</div></div></div><div class="ur-page chapter" data-id="chapter-animation" data-index="32"><div class="ur-page-content"><a name="chapter-animation"></a><div class="wrapper section-page">
+    <div class="column-mid">
+        <div class="section-image-wrapper">
+            <div class="section-image section-animation"></div>
         </div>
-        <div class="grid-column grid-column-3">
-        <div class="grid-column grid-column-wide grid-column-method-example">
-                <pre class=" language-javascript"><code class=" language-javascript"><span class="token comment" spellcheck="true">//</span></code></pre>
-            </div>
-        </div>
-    </div></div></div><div class="ur-page" data-id="json" data-index="32"><div class="ur-page-content"><a name="json"></a><div class="wrapper">
-        <h3 class="method-title">$.json( options )</h3>
+        <h2 class="section-title">Animation</h2>
     </div>
-    <div class="wrapper grid-columns">
-        <div class="grid-column grid-column-2">
-            <h4 class="subtitle method-subtitle">Description</h4>
-            <p class="method-description text-with-code"></p>
-            <h4 class="subtitle method-subtitle">Parameters</h4>
-            <dl class="method-parameters">
-                
-                <dt class="method-parameter-name">options </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(object)</span> Key-value pairs of request options</dd>
-                
-            </dl>
-            <h4 class="subtitle method-subtitle">Returns</h4>
-            <p class="method-return text-with-code">Nothing</p>
-        </div>
-        <div class="grid-column grid-column-3">
-        <div class="grid-column grid-column-wide grid-column-method-example">
-                <pre class=" language-javascript"><code class=" language-javascript"><span class="token comment" spellcheck="true">//</span></code></pre>
-            </div>
-        </div>
-    </div></div></div><div class="ur-page chapter" data-id="chapter-animation" data-index="33"><div class="ur-page-content"><a name="chapter-animation"></a><div class="wrapper section-page">
-        <div class="column-mid">
-            <div class="section-image-wrapper">
-                <div class="section-image section-animation"></div>
-            </div>
-            <h2 class="section-title">Animation</h2>
-        </div>
-    </div></div></div><div class="ur-page" data-id="transitionEnd" data-index="34"><div class="ur-page-content"><a name="transitionEnd"></a><div class="wrapper">
+</div></div></div><div class="ur-page" data-id="transitionEnd" data-index="33"><div class="ur-page-content"><a name="transitionEnd"></a><div class="wrapper grid-columns column-mid text-with-code">
+    <div class="grid-column grid-column-3">
         <h3 class="method-title">$.transitionEnd( property, items, fn )</h3>
-    </div>
-    <div class="wrapper grid-columns">
-        <div class="grid-column grid-column-2">
-            <h4 class="subtitle method-subtitle">Description</h4>
-            <p class="method-description text-with-code">Sets a method to be executed upon the finish of a CSS transition.</p>
-            <h4 class="subtitle method-subtitle">Parameters</h4>
-            <dl class="method-parameters">
-                
-                <dt class="method-parameter-name">property </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(string)</span> Name of CSS property to watch for its transition to end. No need to include vendor prefix even when it's required</dd>
-                
-                <dt class="method-parameter-name">items </dt>
-                <dd class="method-parameter-meta"><span class="ur-code"></span> <span class="ur-code">(HTMLElement)</span>&nbsp;DOM element or any other array/collection <span class="ur-code">(NodeList)</span> of DOM elements which are about to be transitioned</dd>
-                
-                <dt class="method-parameter-name">fn </dt>
-                <dd class="method-parameter-meta"><span class="ur-code">(function)</span> Method to invoke upon the finish of the transition</dd>
-                
-            </dl>
-            <h4 class="subtitle method-subtitle">Returns</h4>
-            <p class="method-return text-with-code">Nothing</p>
-        </div>
-        <div class="grid-column grid-column-3">
-        <div class="grid-column grid-column-wide grid-column-method-example">
-            <pre class=" language-javascript"><code class=" language-javascript"><span class="token keyword">var</span> rows <span class="token operator">=</span> $<span class="token punctuation">(</span><span class="token string">".row"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <p class="method-description">Sets a method to be executed upon the finish of a CSS transition.</p>
+        <h4 class="subtitle method-subtitle">Parameters</h4>
+        <dl class="method-parameters">
+            
+            <dt class="method-parameter-name">property </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(string)</span> Name of CSS property to watch for its transition to end. No need to include vendor prefix even when it's required</dd>
+            
+            <dt class="method-parameter-name">items </dt>
+            <dd class="method-parameter-meta"><span class="ur-code"></span> <code class=" language-javascript"><span class="token punctuation">(</span>HTMLElement<span class="token punctuation">)</span></code>&nbsp;DOM element or any other array/collection <code class=" language-javascript"><span class="token punctuation">(</span>NodeList<span class="token punctuation">)</span></code> of DOM elements which are about to be transitioned</dd>
+            
+            <dt class="method-parameter-name">fn </dt>
+            <dd class="method-parameter-meta"><span class="ur-code">(function)</span> Method to invoke upon the finish of the transition</dd>
+            
+        </dl>
+        <h4 class="subtitle method-subtitle">Returns</h4>
+        <p class="method-return">Nothing</p>
+        <h4 class="subtitle method-subtitle">Like This</h4>
+        <pre class=" language-javascript"><code class=" language-javascript"><span class="token keyword">var</span> rows <span class="token operator">=</span> $<span class="token punctuation">(</span><span class="token string">".row"</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
 rows<span class="token punctuation">.</span><span class="token function">addClass<span class="token punctuation">(</span></span><span class="token string">"transitionable"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">
 // Say .row has "transition: transform .4s ease-in-out"
 </span>
@@ -1019,12 +849,20 @@ $<span class="token punctuation">.</span><span class="token function">transition
 
 rows<span class="token punctuation">.</span><span class="token function">addClass<span class="token punctuation">(</span></span><span class="token string">"get-down"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">
 // Say it adds "transform: translate3d(10px, 0, 0)"</span></code></pre>
-            </div>
-        </div>
+    </div>
+</div></div></div><div class="ur-page back" data-id="_back" data-index="34"><div class="ur-page-content"><a name="undefined"></a><div class="footer">
+    <div class="wrapper footer-content">
+        <div class="section-image section-footer"></div>
+        <p>A small project by <a href="http://ozzik.co" target="_blank" title="Oz Pinhas">Oz Pinhas</a></p>
+        <p class="footer-note"><small>Using <a href="http://www.impallari.com/cabin" target="_blank" title="Cabin typeface">Cabin</a> typeface by amazing <a href="http://www.impallari.com" target="_blank" title="Pablo Impallari">Pablo Impallari</a></small></p>
+    </div>
 </div></div></div></div>
     <script type="text/javascript" src="js/dough.js"></script>
     <script type="text/javascript" src="js/doughjs.js"></script>
     <script type="text/javascript" src="js/prism.js"></script>
+    
     <script type="text/javascript" src="js/urra-reader.js"></script>
+
+<div class="ur-pager"><div class="ur-pager-holder"><div class="ur-pager-toggle"><div class="ur-pager-toggle-dot top">•</div><div class="ur-pager-toggle-dot">•</div><div class="ur-pager-toggle-dot bottom">•</div></div><ul class="ur-pager-items"><li class="ur-pager-item ur-active" "=""><a class="ur-pager-link" href="#_cover" title="Home" data-index="0"><span class="ur-pager-dot">•</span></a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#chapter-core" title="Core (Query)" data-index="1">Core</a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#dough" title="Dough()" data-index="2"><span class="ur-pager-dot">•</span></a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#find" title="find()" data-index="3"><span class="ur-pager-dot">•</span></a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#next" title="next()" data-index="4"><span class="ur-pager-dot">•</span></a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#previous" title="previous()" data-index="5"><span class="ur-pager-dot">•</span></a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#each" title="each()" data-index="6"><span class="ur-pager-dot">•</span></a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#chapter-manipulation" title="Manipulation" data-index="7">Manipulation</a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#html" title="html()" data-index="8"><span class="ur-pager-dot">•</span></a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#before" title="before()" data-index="9"><span class="ur-pager-dot">•</span></a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#after" title="after()" data-index="10"><span class="ur-pager-dot">•</span></a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#attr" title="attr()" data-index="11"><span class="ur-pager-dot">•</span></a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#chapter-css" title="CSS" data-index="12">CSS</a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#addClass" title="addClass()" data-index="13"><span class="ur-pager-dot">•</span></a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#removeClass" title="removeClass()" data-index="14"><span class="ur-pager-dot">•</span></a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#toggleClass" title="toggleClass()" data-index="15"><span class="ur-pager-dot">•</span></a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#hasClass" title="hasClass()" data-index="16"><span class="ur-pager-dot">•</span></a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#css" title="css()" data-index="17"><span class="ur-pager-dot">•</span></a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#transform" title="transform(title)" data-index="18"><span class="ur-pager-dot">•</span></a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#translate" title="translate()" data-index="19"><span class="ur-pager-dot">•</span></a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#chapter-events" title="Events" data-index="20">Events</a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#on" title="on()" data-index="21"><span class="ur-pager-dot">•</span></a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#off" title="off()" data-index="22"><span class="ur-pager-dot">•</span></a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#trigger" title="trigger()" data-index="23"><span class="ur-pager-dot">•</span></a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#click" title="click()" data-index="24"><span class="ur-pager-dot">•</span></a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#chapter-requests" title="Requests" data-index="25">Requests</a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#ajax" title="$.ajax()" data-index="26"><span class="ur-pager-dot">•</span></a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#get" title="$.get()" data-index="27"><span class="ur-pager-dot">•</span></a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#post" title="$.post()" data-index="28"><span class="ur-pager-dot">•</span></a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#put" title="$.put()" data-index="29"><span class="ur-pager-dot">•</span></a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#del" title="$.del()" data-index="30"><span class="ur-pager-dot">•</span></a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#jsonp" title="$.jsonp()" data-index="31"><span class="ur-pager-dot">•</span></a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#chapter-animation" title="Animation" data-index="32">Animation</a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#transitionEnd" title="$.transitionEnd()" data-index="33"><span class="ur-pager-dot">•</span></a></li><li class="ur-pager-item" "=""><a class="ur-pager-link" href="#_back" title="undefined" data-index="34"><span class="ur-pager-dot">•</span></a></li></ul></div></div>
 </body>
 </html>

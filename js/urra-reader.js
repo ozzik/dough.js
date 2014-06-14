@@ -14,34 +14,33 @@ var Pager = {};
         _pages = document.querySelectorAll(".ur-page");
         _stepFactor = 100 / _pages.length;
 
-        return;
-        window.addEventListener("mousewheel", function(e) {
-            e.preventDefault();
+        // window.addEventListener("mousewheel", function(e) {
+        //     e.preventDefault();
             
-            _move(e.wheelDelta < 0);
-        });
-        window.addEventListener("keyup", function(e) {
-            var isNext = e.which === 39 || e.which === 40,
-                isPrevious = e.which === 37 || e.which === 38;
+        //     _move(e.wheelDelta < 0);
+        // });
+        // window.addEventListener("keyup", function(e) {
+        //     var isNext = e.which === 39 || e.which === 40,
+        //         isPrevious = e.which === 37 || e.which === 38;
 
-            if (isNext || isPrevious) {
-                _move(isNext);
-            }
-        });
+        //     if (isNext || isPrevious) {
+        //         _move(isNext);
+        //     }
+        // });
 
         _createPager();
         Pager.gotoPage(0);
     }
 
     Pager.gotoPage = function(page) {
-        _ePages.transform("translate3d(-" + (_stepFactor * page) +"%,0,0)");
+        // _ePages.transform("translate3d(-" + (_stepFactor * page) +"%,0,0)");
 
-        // Updating pager
-        _pager.find(".ur-pager-item:nth-child(" + (_activePage + 1) + ")").removeClass("ur-active");
-        _pager.find(".ur-pager-item:nth-child(" + (page + 1) + ")").addClass("ur-active");
+        // // Updating pager
+        // _pager.find(".ur-pager-item:nth-child(" + (_activePage + 1) + ")").removeClass("ur-active");
+        // _pager.find(".ur-pager-item:nth-child(" + (page + 1) + ")").addClass("ur-active");
 
-        _ePages.find(".ur-page[data-index='" + _activePage + "']").removeClass("ur-active");
-        _ePages.find(".ur-page[data-index='" + page + "']").addClass("ur-active");
+        // _ePages.find(".ur-page[data-index='" + _activePage + "']").removeClass("ur-active");
+        // _ePages.find(".ur-page[data-index='" + page + "']").addClass("ur-active");
 
         _activePage = page;
     }
@@ -53,45 +52,70 @@ var Pager = {};
     }
 
     function _createPager() {
-        // var fragment = document.createDocumentFragment(),
-        var e = document.createElement("div"),
-            html = "",
-            page;
-
-        // Elements creation
-        html += '<ul class="ur-pager">';
-
-        for (var i = 0; i < UR.book.pages.length; i++) {
-            page = UR.book.pages[i];
-
-            html += '<li class="ur-pager-item' + (i === _activePage ? ' ur-active' : "") + '"">';
-            html += '<a class="ur-pager-link" href="#' + page.id +'" title="' + page.name +'" data-index="' + page.index + '">';
-
-            if (page.type === UR.PAGE_TYPES.CHAPTER) {
-                html += page.nameForPager || page.name;
-            } else {
-                // html += '<span class="ur-pager-dot"></span>';
-                html += '<span class="ur-pager-dot">·</span>';
-            }
-
-            html += '</a></li>';
-        }
-
-        html += '</ul>';
-
-        e.className = "ur-pager-wrapper";
-        e.innerHTML = html;
-
-        document.body.appendChild(e);
-
         // Reviving
         _pager = $(".ur-pager");
+
+        _pager.on("mouseover", function(e) {
+            $(this).addClass("active");
+            
+        });
+        _pager.on("mouseout", function(e) {
+            $(this).removeClass("active");
+
+        });
 
         _pager.find(".ur-pager-link").on("click", function(e) {
             Pager.gotoPage(parseInt(this.getAttribute("data-index"), 10));
         });
     }
 })()
+
+var Publisher = {};
+
+(function() {
+    var BOOK_TARGET_SELECTOR = ".ur-pages",
+        _wrapperWidth;
+
+    Publisher.post = function(fragment, bookConfig, bookCompiledData) {
+        // Injecting book content into document
+        document.querySelector(BOOK_TARGET_SELECTOR).appendChild(fragment)
+
+        // Initializing reader + removing author signs from document
+        UR.start(bookCompiledData);
+        UA.remove();
+    }
+
+    Publisher.setupStyle = function(pageCount) {
+        var style = "",
+            wrapper = document.querySelector(".grid-column-3"),
+            left = wrapper.offsetLeft + wrapper.offsetWidth,
+            pagesHalf = parseInt(pageCount / 2),
+            pagerOffset = 0;
+
+        _urraDynamicStyle = document.getElementById("urraDynamicStyle");
+
+        // Pager
+        // style += ".ur-pager { left: " + left + "px; width: " + (window.innerWidth - left) + "px; }";
+
+        // for (var i = 0; i < pagesHalf; i++) {
+        //     style += ".ur-pager-item:nth-child(" + (pagesHalf + i) + "):not(.active) {";
+        //     // style += "-webkit-transform: scale(1); }";
+        //     style += ".ur-pager-item:nth-child(" + (pagesHalf - i) + "):not(.active) {";
+        //     // style += "-webkit-transform: scale(1); }";
+        //     style += ".ur-pager-item:nth-child(" + (pagesHalf + i) + "),";
+        //     style += ".ur-pager-item:nth-child(" + (pagesHalf - i) + ") {";
+        //     style += "-webkit-transition-delay: " + (i * .02) + "s; }";
+        //     pagerOffset++;
+        // }
+
+        // Page size
+        // style += "body { width: " + (pageCount * 100) + "%; }";
+        // style += ".ur-page { width: " + (100 / pageCount) +"%; }"
+
+        _urraDynamicStyle.innerHTML = style;
+    }
+})();
+
 /* ===== Main thingies ===== */
 
 var UR = {};
@@ -119,6 +143,7 @@ var UR = {};
         Pager.init();
 
         // Custom methods
+        Publisher.setupStyle();
         window['_urReady'] && window['_urReady']();
     }
 })()

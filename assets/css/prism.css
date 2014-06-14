@@ -32,7 +32,7 @@ pre[class*="language-"] {
 /* Code blocks */
 pre[class*="language-"] {
   position:relative;
-  overflow:visible;
+  overflow-x:scroll;
   font-size: .8em;
   line-height: normal;
 }
@@ -75,7 +75,6 @@ code[class*="language"] {
 .token.property,
 .token.tag,
 .token.boolean,
-.token.number,
 .token.function-name,
 .token.constant,
 .token.symbol {
@@ -97,7 +96,8 @@ code[class*="language"] {
 .token.operator,
 .token.entity,
 .token.url,
-.token.variable {
+.token.variable,
+.token.number {
   color: #AF4FAF;
   background: #FFF9FF;
 }
