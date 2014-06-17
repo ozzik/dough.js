@@ -7,7 +7,8 @@ var Pager = {};
         _stepFactor,
         _pages = [],
         _activePage = 0,
-        _pager;
+        _pager,
+        _rAF = window.requestAnimationFrame || window.webkitRequestAnimationFrame || window.mozRequestAnimationFrame || function (callback) { window.setTimeout(callback, 1000 / 60); };
 
     Pager.init = function() {
         _ePages = $(".ur-pages");
@@ -29,20 +30,54 @@ var Pager = {};
         // });
 
         _createPager();
-        Pager.gotoPage(0);
+        // Pager.gotoPage(0);
+
+        // Setting up custom animated scroll links
+        $(".animate-scroll").on("click", function(e) {
+            e.preventDefault();
+
+            var pageName = this.getAttribute("href").substring(1),
+                page = document.querySelector("a[name='" + pageName + "']");
+
+            _animate_scroll(page);
+
+            window.location.hash = pageName;
+        });
     }
 
     Pager.gotoPage = function(page) {
-        // _ePages.transform("translate3d(-" + (_stepFactor * page) +"%,0,0)");
+        page = document.querySelector(".ur-page[data-index='" + page + "']");
 
-        // // Updating pager
-        // _pager.find(".ur-pager-item:nth-child(" + (_activePage + 1) + ")").removeClass("ur-active");
-        // _pager.find(".ur-pager-item:nth-child(" + (page + 1) + ")").addClass("ur-active");
+        _animate_scroll(page);
 
-        // _ePages.find(".ur-page[data-index='" + _activePage + "']").removeClass("ur-active");
-        // _ePages.find(".ur-page[data-index='" + page + "']").addClass("ur-active");
-
+        // Other metadata
         _activePage = page;
+        window.location.hash = page.getAttribute("data-id");
+    }
+
+    function _easeInOutCubic(t, b, c, d) {
+        if ((t/=d/2) < 1) return c/2*t*t*t + b;
+        return c/2*((t-=2)*t*t + 2) + b;
+    }
+
+    /* RequestAnimationFrame-based scroll from (https://gist.github.com/james2doyle/5694700) */
+    function _animate_scroll(element) {
+        var eDoc = (navigator.userAgent.indexOf('Firefox') != -1 || navigator.userAgent.indexOf('MSIE') != -1) ? document.documentElement : document.body,
+            scrollStart = eDoc.scrollTop,
+            scrollEnd = element.offsetTop,
+            change = scrollEnd - scrollStart,
+            tick = 0,
+            duration = 300;
+
+        function scroll_a_bit() {
+            tick += 20;
+            eDoc.scrollTop = _easeInOutCubic(tick, scrollStart, change, duration);
+
+            if (tick < duration) {
+                _rAF(scroll_a_bit);
+            }
+        }
+        (scrollStart !== scrollEnd) && scroll_a_bit();
     }
 
     function _move(isForwards) {
@@ -57,65 +92,33 @@ var Pager = {};
 
         _pager.on("mouseover", function(e) {
             $(this).addClass("active");
-            
+        });
+        _pager.on("mousemove", function(e) {
+            clearTimeout(_pager._revealTimer);
+
+            if (_pager._isRevealed) { return; }
+
+            _pager._revealTimer = setTimeout(function() {
+                _pager._isRevealed = true;
+                _pager.addClass("reveal");
+            }, 500);
         });
         _pager.on("mouseout", function(e) {
+            if (e.toElement.className.indexOf("ur-pager") !== -1) { return; }
+
             $(this).removeClass("active");
 
+            clearTimeout(_pager._revealTimer);
+            _pager.removeClass("reveal");
+            _pager._isRevealed = false;
         });
 
         _pager.find(".ur-pager-link").on("click", function(e) {
+            e.preventDefault();
             Pager.gotoPage(parseInt(this.getAttribute("data-index"), 10));
         });
     }
 })()
-
-var Publisher = {};
-
-(function() {
-    var BOOK_TARGET_SELECTOR = ".ur-pages",
-        _wrapperWidth;
-
-    Publisher.post = function(fragment, bookConfig, bookCompiledData) {
-        // Injecting book content into document
-        document.querySelector(BOOK_TARGET_SELECTOR).appendChild(fragment)
-
-        // Initializing reader + removing author signs from document
-        UR.start(bookCompiledData);
-        UA.remove();
-    }
-
-    Publisher.setupStyle = function(pageCount) {
-        var style = "",
-            wrapper = document.querySelector(".grid-column-3"),
-            left = wrapper.offsetLeft + wrapper.offsetWidth,
-            pagesHalf = parseInt(pageCount / 2),
-            pagerOffset = 0;
-
-        _urraDynamicStyle = document.getElementById("urraDynamicStyle");
-
-        // Pager
-        // style += ".ur-pager { left: " + left + "px; width: " + (window.innerWidth - left) + "px; }";
-
-        // for (var i = 0; i < pagesHalf; i++) {
-        //     style += ".ur-pager-item:nth-child(" + (pagesHalf + i) + "):not(.active) {";
-        //     // style += "-webkit-transform: scale(1); }";
-        //     style += ".ur-pager-item:nth-child(" + (pagesHalf - i) + "):not(.active) {";
-        //     // style += "-webkit-transform: scale(1); }";
-        //     style += ".ur-pager-item:nth-child(" + (pagesHalf + i) + "),";
-        //     style += ".ur-pager-item:nth-child(" + (pagesHalf - i) + ") {";
-        //     style += "-webkit-transition-delay: " + (i * .02) + "s; }";
-        //     pagerOffset++;
-        // }
-
-        // Page size
-        // style += "body { width: " + (pageCount * 100) + "%; }";
-        // style += ".ur-page { width: " + (100 / pageCount) +"%; }"
-
-        _urraDynamicStyle.innerHTML = style;
-    }
-})();
-
 /* ===== Main thingies ===== */
 
 var UR = {};
@@ -143,7 +146,6 @@ var UR = {};
         Pager.init();
 
         // Custom methods
-        Publisher.setupStyle();
         window['_urReady'] && window['_urReady']();
     }
 })()
