@@ -1,4 +1,4 @@
-/*! Dough.js - by Oz Pinhas @ 2013 (Version 0.1.1)
+/*! Dough.js - by Oz Pinhas @ 2013 (Version 0.1.2)
  *  https://github.com/ozzik/dough.js
  *  Licensed under the MIT license. */
 (function(w) {
@@ -12,14 +12,26 @@
 	    _eventPointerStart,
 	    _eventPointerMove,
 	    _eventPointerEnd;
-	// Transitions
-	var _transitions = {}, // Queued transition callback data for transition end events
+	// Transitions + animations
+    var _PREFIXED_EVENTS = {
+            AnimationEnd: [ "webkit" ],
+            TransitionEnd: [ "webkit" ]
+        }, // Browser engines which require prefixed event names
+        _transitions = {}, // Queued transition callback data for transition end events
 		_transitionProperties = {}, // Names of queued transition properties
 		_tCrumbs = 1, // Unique ID for transitions
 	    _didSetupTransitionEnd,
-	    _renderEngine;
-	// Others
-	var _htmlDivElement = document.createElement("div"); // Dummy div element for HTML creation
+        _animation = {},
+        _didSetupAnimationEnd;
+	// Shared + others
+    var _renderEngine,
+        _device = {
+            isWebkit: false,
+            isGecko: false,
+            isTrident: false,
+            isTouch: false
+        },
+	   _htmlDivElement = document.createElement("div"); // Dummy div element for HTML creation
 
 	/* ==== Core methods ==== */
     /* Retrieves elements from DOM into a Dough object  */
@@ -137,13 +149,18 @@
 
     /* Identifies the browser's rendering engine */
     function _detect_engine() {
-        var ua = navigator.userAgent,
+        var ua = navigator.userAgent.toLowerCase(),
             value = "";
 
-        if (ua.indexOf("webkit")) {
+        if (ua.indexOf("webkit") !== -1) {
             value = "webkit";
-        } else if (ua.indexOf("Firefox")) {
+            _device.isWebkit = true;
+        } else if (ua.indexOf("trident") !== -1) {
+            value = "ms";
+            _device.isTrident = true;
+        } else if (ua.indexOf("firefox") !== -1) {
             value = "moz";
+            _device.isGecko = true;
         }
 
         return value;
@@ -158,27 +175,53 @@
         }
     }
 
+    /* Prettifies a given JS event name according with possible required vendor prefix */
+    function _synthasize_event(event) {
+        if (_PREFIXED_EVENTS[event].indexOf(_renderEngine) !== -1) {
+            return _renderEngine + event;
+        } else {
+            return event.toLowerCase();
+        }
+    }
+
     /* Attaches an event listener for handling the finish of a CSS transition */
     function _setup_transition_end_listener() {
-		document.body.addEventListener($.engine + "TransitionEnd", function(e) {
-		    if (!_transitionProperties[e.propertyName]) { return; } // Property that wasn't selected for detection
+        document.body.addEventListener(_synthasize_event("TransitionEnd"), function(e) {
+            if (!_transitionProperties[e.propertyName]) { return; } // Property that wasn't selected for detection
 
-		    // Finding queued transition
-		    var transition = _transitions[e.target._tCrumb];
-		    if (!transition) { return; }
+            // Finding queued transition
+            var transition = _transitions[e.target._tCrumb];
+            if (!transition) { return; }
 
-		    transition.finished++;
+            transition.finished++;
 
-		    if (transition.finished == transition.required) {
-		        // Marking transition as completed
-		        delete _transitions[e.target._tCrumb];
-		        _transitionProperties[e.property]--;
+            if (transition.finished == transition.required) {
+                // Marking transition as completed
+                delete _transitions[e.target._tCrumb];
+                _transitionProperties[e.property]--;
 
-		        transition.callback && transition.callback();
-		    }
-		});
+                transition.callback && transition.callback();
+            }
+        });
 
-		_didSetupTransitionEnd = true;
+        _didSetupTransitionEnd = true;
+    }
+
+    /* Attaches an event listener for handling the finish of a CSS animation */
+    function _setup_animation_end_listener() {
+        document.body.addEventListener(_synthasize_event("AnimationEnd"), function(e) {
+            if (e.animationName !== _animation.name) { return; }
+
+            _animation.finished++;
+
+            if (_animation.finished == _animation.required) {
+                _animation.name = null;
+                _animation.callback();
+                _animation = {};
+            }
+        });
+
+        _didSetupAnimationEnd = true;
     }
 
 	/* ==== Exposed thingies ==== */
@@ -392,8 +435,8 @@
 		        e.preventDefault();
 
 		        this._$e = $(this);
-		        this._startX = (_isTouch) ? e.touches[0].pageX : e.pageX;
-		        this._startY = (_isTouch) ? e.touches[0].pageY : e.pageY;
+		        this._startX = (_device.isTouch) ? e.touches[0].pageX : e.pageX;
+		        this._startY = (_device.isTouch) ? e.touches[0].pageY : e.pageY;
 		        this._didMove = false;
 		        this._isPointerDown = true;
 
@@ -403,8 +446,8 @@
 		    this.on(_eventPointerMove, function(e) {
 		        if (!this._isPointerDown) { return; }
 
-		        var x = (_isTouch) ? e.touches[0].pageX : e.pageX,
-		            y = (_isTouch) ? e.touches[0].pageY : e.pageY;
+		        var x = (_device.isTouch) ? e.touches[0].pageX : e.pageX,
+		            y = (_device.isTouch) ? e.touches[0].pageY : e.pageY;
 
 		        this._didMove = (Math.abs(x - this._startX) >= 10) || (Math.abs(y - this._startY) >= 10);
 		        if (this._didMove && this._$e) {
@@ -474,15 +517,17 @@
 			return hasClass;
 		}
 	}
-	_renderEngine = _detect_engine();
-	_isTouch = "ontouchstart" in document;
 
-	_eventPointerStart = _isTouch ? "touchstart" : "mousedown";
-	_eventPointerMove = _isTouch ? "touchmove" : "mousemove";
-	_eventPointerEnd = _isTouch ? "touchend" : "mouseup";
+	_renderEngine = _detect_engine();
+	_device.isTouch = "ontouchstart" in document;
+
+	_eventPointerStart = _device.isTouch ? "touchstart" : "mousedown";
+	_eventPointerMove = _device.isTouch ? "touchmove" : "mousemove";
+	_eventPointerEnd = _device.isTouch ? "touchend" : "mouseup";
 
 	// Static methods
 	doughFn.engine = _renderEngine;
+    doughFn.device = _device;
 
 	doughFn.parseJSON = function(text) {
 	    var result = {
@@ -568,37 +613,50 @@
 	};
 
 	/* Sets a method to be executed upon the finish of a CSS transition */
-	doughFn.transitionEnd = function(property, items, callback) {
-		// Setting up transition end handling method
-		!_didSetupTransitionEnd && _setup_transition_end_listener();
+    doughFn.transitionEnd = function(property, items, callback) {
+        // Setting up transition end handling method
+        !_didSetupTransitionEnd && _setup_transition_end_listener();
 
-		// Actual callback
-		property = _synthasize_property(property);
+        // Actual callback
+        property = _synthasize_property(property);
 
-		_tCrumbs++;
-		var transition = {
-		    id: _tCrumbs,
-		    finished: 0,
-		    required: items.length || 1,
-		    callback: callback
-		};
-		
-		// Marking items
-		if (!items.length) {
-		    items._tCrumb = _tCrumbs;
-		} else {
-		    for (var i = 0; i < items.length; i++) {
-		        items[i]._tCrumb = _tCrumbs;
-		    }
-		}
-		
-		_transitions[_tCrumbs] = transition;
+        _tCrumbs++;
+        var transition = {
+            id: _tCrumbs,
+            finished: 0,
+            required: items.length || 1,
+            callback: callback
+        };
+        
+        // Marking items
+        if (!items.length) {
+            items._tCrumb = _tCrumbs;
+        } else {
+            for (var i = 0; i < items.length; i++) {
+                items[i]._tCrumb = _tCrumbs;
+            }
+        }
+        
+        _transitions[_tCrumbs] = transition;
 
-		if (!_transitionProperties[property]) {
-		    _transitionProperties[property] = 0;
-		}
-		_transitionProperties[property]++;
-	};
+        if (!_transitionProperties[property]) {
+            _transitionProperties[property] = 0;
+        }
+        _transitionProperties[property]++;
+    };
+
+    /* Sets a method to be executed upon the finish of a CSS animation */
+    doughFn.animationEnd = function(name, required, callback) {
+        // Setting up animation end handling method
+        !_didSetupAnimationEnd && _setup_animation_end_listener();
+        
+        _animation = {
+            name: name,
+            finished: 0,
+            required: required,
+            callback: callback
+        };
+    };
 
 	// Trigger function ($)
 	function doughFn(selector) {
