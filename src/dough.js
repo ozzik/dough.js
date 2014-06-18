@@ -1,5 +1,5 @@
 /*! Dough.js - by Oz Pinhas @ 2013 (Version 0.1.2)
- *  https://github.com/ozzik/dough.js
+ *  https://ozzik.github.com/dough.js
  *  Licensed under the MIT license. */
 (function(w) {
 	// Dough object

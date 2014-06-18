@@ -1,5 +1,5 @@
 # Dough.js
-A Differently-small many-in-one JavaScript library for DOM manipulation and AJAX network requests.
+A common yet a bit different JS library.
 
 
 Documentation and more on http://ozzik.github.com/dough.js
