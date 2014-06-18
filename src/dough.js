@@ -8,109 +8,109 @@
 	/* ==== Private shenanigans ==== */
 	// Events
 	var _listeners = {}, // Saved event listeners methods
-	    _crumbs = 1, // Unique ID index (given to every DOM element for identifying it in listeners object)
-	    _eventPointerStart,
-	    _eventPointerMove,
-	    _eventPointerEnd;
+		_crumbs = 1, // Unique ID index (given to every DOM element for identifying it in listeners object)
+		_eventPointerStart,
+		_eventPointerMove,
+		_eventPointerEnd;
 	// Transitions + animations
-    var _PREFIXED_EVENTS = {
-            AnimationEnd: [ "webkit" ],
-            TransitionEnd: [ "webkit" ]
-        }, // Browser engines which require prefixed event names
-        _transitions = {}, // Queued transition callback data for transition end events
+	var _PREFIXED_EVENTS = {
+			AnimationEnd: [ "webkit" ],
+			TransitionEnd: [ "webkit" ]
+		}, // Browser engines which require prefixed event names
+		_transitions = {}, // Queued transition callback data for transition end events
 		_transitionProperties = {}, // Names of queued transition properties
 		_tCrumbs = 1, // Unique ID for transitions
-	    _didSetupTransitionEnd,
-        _animation = {},
-        _didSetupAnimationEnd;
+		_didSetupTransitionEnd,
+		_animation = {},
+		_didSetupAnimationEnd;
 	// Shared + others
-    var _renderEngine,
-        _device = {
-            isWebkit: false,
-            isGecko: false,
-            isTrident: false,
-            isTouch: false
-        },
+	var _renderEngine,
+		_device = {
+			isWebkit: false,
+			isGecko: false,
+			isTrident: false,
+			isTouch: false
+		},
 	   _htmlDivElement = document.createElement("div"); // Dummy div element for HTML creation
 
 	/* ==== Core methods ==== */
-    /* Retrieves elements from DOM into a Dough object  */
-    function _find(selector, base) {
-        var dough = new Dough(), // Dough object to be returned
-            e = [];
+	/* Retrieves elements from DOM into a Dough object  */
+	function _find(selector, base) {
+		var dough = new Dough(), // Dough object to be returned
+			e = [];
 
-        // Someday there will be an efficient query method selection
-        // (keep in mind: /^#[\w-]+$/i.test(selector))
-        if (typeof selector === "string") {
-            e = (base || document).querySelectorAll(selector);
-        } else if (selector instanceof NodeList || Array.isArray(selector)) {
-            e = selector;
-        } else if (selector instanceof HTMLElement) {
-            e[0] = selector;
-        }
+		// Someday there will be an efficient query method selection
+		// (keep in mind: /^#[\w-]+$/i.test(selector))
+		if (typeof selector === "string") {
+			e = (base || document).querySelectorAll(selector);
+		} else if (selector instanceof NodeList || Array.isArray(selector)) {
+			e = selector;
+		} else if (selector instanceof HTMLElement) {
+			e[0] = selector;
+		}
 
-        // Storing elements in dough object as keys (=elements collection)
-        for (var i = 0, len = e.length; i < len; i++) {
-            dough[i] = e[i];
-        }
-        dough.length = e.length;
+		// Storing elements in dough object as keys (=elements collection)
+		for (var i = 0, len = e.length; i < len; i++) {
+			dough[i] = e[i];
+		}
+		dough.length = e.length;
 
-        return dough;
-    }
+		return dough;
+	}
 
-    /* Performs a method on the collection or on a given element within it */
-    function _each(e, fn, index, args) {
+	/* Performs a method on the collection or on a given element within it */
+	function _each(e, fn, index, args) {
 		for (var i = index || 0, len = (index !== undefined ? index + 1 : e.length); i < len; i++) {
-            fn(e[i], args);
-        }
-    }
+			fn(e[i], args);
+		}
+	}
 
-    /* ==== CSS-related methods ==== */
-    /* Mingles with the CSS selector class(es) of every element in the collection */
-    /* Fallback method is defined later on */
-    function _edit_classes(e, action, classes, index) {
-        classes = classes.split(" ");
+	/* ==== CSS-related methods ==== */
+	/* Mingles with the CSS selector class(es) of every element in the collection */
+	/* Fallback method is defined later on */
+	function _edit_classes(e, action, classes, index) {
+		classes = classes.split(" ");
 
-        _each(e, function(e) {
+		_each(e, function(e) {
 			for (var i = 0, len = classes.length; i < len; i++) {
 				e.classList[action](classes[i]);
 			}
-        }, index);
-    }
+		}, index);
+	}
 
-    /* Parses a given HTML string to DOM elements */
-    function _parse_content(content) {
-        var childNodes,
-            returnedNodes = [];
+	/* Parses a given HTML string to DOM elements */
+	function _parse_content(content) {
+		var childNodes,
+			returnedNodes = [];
 
-        if (content instanceof HTMLElement) {
-            return [content];
-        } else {
-            _htmlDivElement.innerHTML = content;
-            childNodes = _htmlDivElement.childNodes;
+		if (content instanceof HTMLElement) {
+			return [content];
+		} else {
+			_htmlDivElement.innerHTML = content;
+			childNodes = _htmlDivElement.childNodes;
 
-            for (var i = 0, len = childNodes.length; i < len; i++) {
-                returnedNodes[i] = childNodes[i];
-            }
+			for (var i = 0, len = childNodes.length; i < len; i++) {
+				returnedNodes[i] = childNodes[i];
+			}
 
-            return returnedNodes;
-        }
-    }
+			return returnedNodes;
+		}
+	}
 
-    /* Gets the sibling node element of a given element */
-    function _get_sibling(e, isNext) {
-        var property = (isNext ? "next" : "previous") + "Sibling",
-            sibling = e[property];
+	/* Gets the sibling node element of a given element */
+	function _get_sibling(e, isNext) {
+		var property = (isNext ? "next" : "previous") + "Sibling",
+			sibling = e[property];
 
-        while (sibling && sibling.nodeType !== Node.ELEMENT_NODE) {
-            sibling = sibling[property];
-        }
+		while (sibling && sibling.nodeType !== Node.ELEMENT_NODE) {
+			sibling = sibling[property];
+		}
 
-        return sibling;
-    }
+		return sibling;
+	}
 
-    /* Adds an event listener to a given element */
-    function _attach_listener(e, event, fn, options) {
+	/* Adds an event listener to a given element */
+	function _attach_listener(e, event, fn, options) {
 		// Attaching a unique identifier for the element + saving its function
 		if (!e._crumb) {
 			e._crumb = _crumbs++;
@@ -122,107 +122,107 @@
 
 		// Fuck IE8-
 		e.addEventListener(event, fn, options && options.isCapture);
-    }
+	}
 
-    /* Inserts an HTTP parameter and its value to a given string */
-    function _add_http_parameter(data, parameter, value) {
-        return (data ? data + "&" : "") + parameter + "=" + value;
-    }
+	/* Inserts an HTTP parameter and its value to a given string */
+	function _add_http_parameter(data, parameter, value) {
+		return (data ? data + "&" : "") + parameter + "=" + value;
+	}
 
-    /* Creates an HTTP parameters string based on a given parameters object */
-    function _generate_http_parameters(data) {
-        var dataKeys = Object.keys(data),
-            params = "";
+	/* Creates an HTTP parameters string based on a given parameters object */
+	function _generate_http_parameters(data) {
+		var dataKeys = Object.keys(data),
+			params = "";
 
-        for (var i = 0, len = dataKeys.length; i < len; i++) {
-            params = _add_http_parameter(params, dataKeys[i], data[dataKeys[i]]);
-        }
+		for (var i = 0, len = dataKeys.length; i < len; i++) {
+			params = _add_http_parameter(params, dataKeys[i], data[dataKeys[i]]);
+		}
 
-        return params;
-    }
+		return params;
+	}
 
-    /* Internal message printing */
-    function _log(str, isBadUsage) {
-        str += (isBadUsage) ? " god damned it!" : "";
-        console.warn ? console.warn(str) : console.log(str);
-    }
+	/* Internal message printing */
+	function _log(str, isBadUsage) {
+		str += (isBadUsage) ? " god damned it!" : "";
+		console.warn ? console.warn(str) : console.log(str);
+	}
 
-    /* Identifies the browser's rendering engine */
-    function _detect_engine() {
-        var ua = navigator.userAgent.toLowerCase(),
-            value = "";
+	/* Identifies the browser's rendering engine */
+	function _detect_engine() {
+		var ua = navigator.userAgent.toLowerCase(),
+			value = "";
 
-        if (ua.indexOf("webkit") !== -1) {
-            value = "webkit";
-            _device.isWebkit = true;
-        } else if (ua.indexOf("trident") !== -1) {
-            value = "ms";
-            _device.isTrident = true;
-        } else if (ua.indexOf("firefox") !== -1) {
-            value = "moz";
-            _device.isGecko = true;
-        }
+		if (ua.indexOf("webkit") !== -1) {
+			value = "webkit";
+			_device.isWebkit = true;
+		} else if (ua.indexOf("trident") !== -1) {
+			value = "ms";
+			_device.isTrident = true;
+		} else if (ua.indexOf("firefox") !== -1) {
+			value = "moz";
+			_device.isGecko = true;
+		}
 
-        return value;
-    }
+		return value;
+	}
 
-    /* Prettifies a given CSS property name according with possible required vendor prefix */
-    function _synthasize_property(property) {
-        if (property === "transform") {
-            return "-" + _renderEngine + "-transform";
-        } else {
-            return property;
-        }
-    }
+	/* Prettifies a given CSS property name according with possible required vendor prefix */
+	function _synthasize_property(property) {
+		if (property === "transform") {
+			return "-" + _renderEngine + "-transform";
+		} else {
+			return property;
+		}
+	}
 
-    /* Prettifies a given JS event name according with possible required vendor prefix */
-    function _synthasize_event(event) {
-        if (_PREFIXED_EVENTS[event].indexOf(_renderEngine) !== -1) {
-            return _renderEngine + event;
-        } else {
-            return event.toLowerCase();
-        }
-    }
+	/* Prettifies a given JS event name according with possible required vendor prefix */
+	function _synthasize_event(event) {
+		if (_PREFIXED_EVENTS[event].indexOf(_renderEngine) !== -1) {
+			return _renderEngine + event;
+		} else {
+			return event.toLowerCase();
+		}
+	}
 
-    /* Attaches an event listener for handling the finish of a CSS transition */
-    function _setup_transition_end_listener() {
-        document.body.addEventListener(_synthasize_event("TransitionEnd"), function(e) {
-            if (!_transitionProperties[e.propertyName]) { return; } // Property that wasn't selected for detection
+	/* Attaches an event listener for handling the finish of a CSS transition */
+	function _setup_transition_end_listener() {
+		document.body.addEventListener(_synthasize_event("TransitionEnd"), function(e) {
+			if (!_transitionProperties[e.propertyName]) { return; } // Property that wasn't selected for detection
 
-            // Finding queued transition
-            var transition = _transitions[e.target._tCrumb];
-            if (!transition) { return; }
+			// Finding queued transition
+			var transition = _transitions[e.target._tCrumb];
+			if (!transition) { return; }
 
-            transition.finished++;
+			transition.finished++;
 
-            if (transition.finished == transition.required) {
-                // Marking transition as completed
-                delete _transitions[e.target._tCrumb];
-                _transitionProperties[e.property]--;
+			if (transition.finished == transition.required) {
+				// Marking transition as completed
+				delete _transitions[e.target._tCrumb];
+				_transitionProperties[e.property]--;
 
-                transition.callback && transition.callback();
-            }
-        });
+				transition.callback && transition.callback();
+			}
+		});
 
-        _didSetupTransitionEnd = true;
-    }
+		_didSetupTransitionEnd = true;
+	}
 
-    /* Attaches an event listener for handling the finish of a CSS animation */
-    function _setup_animation_end_listener() {
-        document.body.addEventListener(_synthasize_event("AnimationEnd"), function(e) {
-            if (e.animationName !== _animation.name) { return; }
+	/* Attaches an event listener for handling the finish of a CSS animation */
+	function _setup_animation_end_listener() {
+		document.body.addEventListener(_synthasize_event("AnimationEnd"), function(e) {
+			if (e.animationName !== _animation.name) { return; }
 
-            _animation.finished++;
+			_animation.finished++;
 
-            if (_animation.finished == _animation.required) {
-                _animation.name = null;
-                _animation.callback();
-                _animation = {};
-            }
-        });
+			if (_animation.finished == _animation.required) {
+				_animation.name = null;
+				_animation.callback();
+				_animation = {};
+			}
+		});
 
-        _didSetupAnimationEnd = true;
-    }
+		_didSetupAnimationEnd = true;
+	}
 
 	/* ==== Exposed thingies ==== */
 	// Exposed methods
@@ -263,17 +263,17 @@
 
 		/* Adds/removes a CSS selector class(es) from/to collection's elements */
 		toggleClass: function(classes, isAdd, index) {
-		    var action = "toggle";
+			var action = "toggle";
 
-		    if (typeof isAdd === "boolean") {
-		    	action = (isAdd) ? "add" : "remove";
-		    } else {
-		    	index = isAdd;
-		    }
+			if (typeof isAdd === "boolean") {
+				action = (isAdd) ? "add" : "remove";
+			} else {
+				index = isAdd;
+			}
 
-		    _edit_classes(this, action, classes.trim(), index);
+			_edit_classes(this, action, classes.trim(), index);
 
-		    return this;
+			return this;
 		},
 
 		/* Determines whether every element in the collection has a given CSS selector class(es) */
@@ -315,21 +315,21 @@
 				}
 			}, index);
 
-            return this;
+			return this;
 		},
 
 		/* Sets the CSS transform property of the collection's elements */
 		transform: function(transformFn, index) {
-		    _each(this, function(e) {
-		        e.style[_renderEngine + "Transform"] = transformFn;
-		    }, index);
+			_each(this, function(e) {
+				e.style[_renderEngine + "Transform"] = transformFn;
+			}, index);
 		},
 
 		/* Sets a CSS translate3d method to the collection's elements */
 		translate: function(x, y, z, index) {
-		    _each(this, function(e) {
-		        e.style[_renderEngine + "Transform"] = "translate3d(" + (x || 0) + "px," + (y || 0) + "px," + (z || 0) + "px)";
-		    }, index);
+			_each(this, function(e) {
+				e.style[_renderEngine + "Transform"] = "translate3d(" + (x || 0) + "px," + (y || 0) + "px," + (z || 0) + "px)";
+			}, index);
 		},
 
 		/* ==== Structure methods ==== */
@@ -340,7 +340,7 @@
 				e[(value !== undefined ? "set" : "remove") + "Attribute"](name, value);
 			}, index);
 
-            return this;
+			return this;
 		},
 
 		/* Sets the HTML contents of collection's elements */
@@ -354,7 +354,7 @@
 				e.innerHTML = value;
 			}, index);
 
-            return this;
+			return this;
 		},
 
 		/* Appends an element before every element in the collection */
@@ -367,7 +367,7 @@
 				}
 			}, index);
 
-            return this;
+			return this;
 		},
 
 		/* Appends an element before every element in the collection */
@@ -388,7 +388,7 @@
 				}
 			}, index);
 
-            return this;
+			return this;
 		},
 
 		/* ==== Events methods ==== */
@@ -400,7 +400,7 @@
 				_attach_listener(e, event, fn, options);
 			}, index);
 
-            return this;
+			return this;
 		},
 
 		/* Removes previously set-up event function from an element */
@@ -414,7 +414,7 @@
 				}
 			}, index);
 
-            return this;
+			return this;
 		},
 
 		/* Invokes attached function to an element's event */
@@ -425,47 +425,47 @@
 				}
 			}, index);
 
-            return this;
+			return this;
 		},
 
 		/* ==== Action methods ==== */
 		/* Creates a click/tap event listener */
 		click: function(fn, index) {
-		    this.on(_eventPointerStart, function(e) {
-		        e.preventDefault();
+			this.on(_eventPointerStart, function(e) {
+				e.preventDefault();
 
-		        this._$e = $(this);
-		        this._startX = (_device.isTouch) ? e.touches[0].pageX : e.pageX;
-		        this._startY = (_device.isTouch) ? e.touches[0].pageY : e.pageY;
-		        this._didMove = false;
-		        this._isPointerDown = true;
+				this._$e = $(this);
+				this._startX = (_device.isTouch) ? e.touches[0].pageX : e.pageX;
+				this._startY = (_device.isTouch) ? e.touches[0].pageY : e.pageY;
+				this._didMove = false;
+				this._isPointerDown = true;
 
-		        this._$e.addClass("pressed");
-		    }, index);
+				this._$e.addClass("pressed");
+			}, index);
 
-		    this.on(_eventPointerMove, function(e) {
-		        if (!this._isPointerDown) { return; }
+			this.on(_eventPointerMove, function(e) {
+				if (!this._isPointerDown) { return; }
 
-		        var x = (_device.isTouch) ? e.touches[0].pageX : e.pageX,
-		            y = (_device.isTouch) ? e.touches[0].pageY : e.pageY;
+				var x = (_device.isTouch) ? e.touches[0].pageX : e.pageX,
+					y = (_device.isTouch) ? e.touches[0].pageY : e.pageY;
 
-		        this._didMove = (Math.abs(x - this._startX) >= 10) || (Math.abs(y - this._startY) >= 10);
-		        if (this._didMove && this._$e) {
-		            this._$e.removeClass("pressed");
-		        }
-		    }, index);
+				this._didMove = (Math.abs(x - this._startX) >= 10) || (Math.abs(y - this._startY) >= 10);
+				if (this._didMove && this._$e) {
+					this._$e.removeClass("pressed");
+				}
+			}, index);
 
-		    this.on(_eventPointerEnd, function(e) {
-		        this._isPointerDown = false;
+			this.on(_eventPointerEnd, function(e) {
+				this._isPointerDown = false;
 
-		        if (!this._didMove) {
-		            this._$e.removeClass("pressed");
+				if (!this._didMove) {
+					this._$e.removeClass("pressed");
 
-		            fn(this._$e);
-		        }
-		    }, index);
+					fn(this._$e);
+				}
+			}, index);
 
-		    return this;
+			return this;
 		},
 
 		/* ==== Collection methods ==== */
@@ -527,71 +527,71 @@
 
 	// Static methods
 	doughFn.engine = _renderEngine;
-    doughFn.device = _device;
+	doughFn.device = _device;
 
 	doughFn.parseJSON = function(text) {
-	    var result = {
-	        isSuccess: false,
-	        json: null
-	    };
+		var result = {
+			isSuccess: false,
+			json: null
+		};
 
-	    try {
-	        result.json = JSON.parse(text);
-	        result.isSuccess = true;
-	    } catch (e) {
-	        result.error = e;
-	    }
+		try {
+			result.json = JSON.parse(text);
+			result.isSuccess = true;
+		} catch (e) {
+			result.error = e;
+		}
 
-	    return result;
+		return result;
 	};
 
 	/* Performs an asynchronus HTTP request */
 	doughFn.ajax = function(options) {
-        var midget = new XMLHttpRequest(),
-            data = "",
-            isJSON = (options.contentType === undefined || options.contentType === "application/json");
+		var midget = new XMLHttpRequest(),
+			data = "",
+			isJSON = (options.contentType === undefined || options.contentType === "application/json");
 
-        options.type = options.type.toLowerCase();
-        options.contentType = (isJSON) ? "application/json" : options.contentType; // Setting deafult to JSON
-        options.contentType = (options.type !== "get") ? "application/x-www-form-urlencoded" : options.contentType;
-        options.charset = (options.charset) ? options.charset : "UTF-8";
+		options.type = options.type.toLowerCase();
+		options.contentType = (isJSON) ? "application/json" : options.contentType; // Setting deafult to JSON
+		options.contentType = (options.type !== "get") ? "application/x-www-form-urlencoded" : options.contentType;
+		options.charset = (options.charset) ? options.charset : "UTF-8";
 
-        midget.open(options.type, options.url, true);
-        midget.setRequestHeader("Content-Type", options.contentType + ";charset=" + options.charset);
+		midget.open(options.type, options.url, true);
+		midget.setRequestHeader("Content-Type", options.contentType + ";charset=" + options.charset);
 
-        midget.onreadystatechange = function() {
-            if (midget.readyState === 4) {
-                if (midget.status === 200) {
-                    var result;
+		midget.onreadystatechange = function() {
+			if (midget.readyState === 4) {
+				if (midget.status === 200) {
+					var result;
 
-                    if (isJSON) {
-                        result = doughFn.parseJSON(midget.responseText);
+					if (isJSON) {
+						result = doughFn.parseJSON(midget.responseText);
 
-                        if (result.isSuccess) {
-                            result = result.json;
-                        } else {
-                            console.log(result);
-                            options.parseError ? options.parseError(result.e) : _log("Dough JSON parsing error: " + result.error.name + " - " + result.error.message + ". You should handle this error with a .parseError method", true);
-                            return;
-                        }
-                    }
+						if (result.isSuccess) {
+							result = result.json;
+						} else {
+							console.log(result);
+							options.parseError ? options.parseError(result.e) : _log("Dough JSON parsing error: " + result.error.name + " - " + result.error.message + ". You should handle this error with a .parseError method", true);
+							return;
+						}
+					}
 
-                    options.success((isJSON) ? result : midget.responseText); // Success
-                } else {
-                    options.error ? options.error(midget.status) : _log("Dough AJAX error: Returned " + midget.status + ". You should handle this error with a .error method", true);
-                }
-            }
-        };
+					options.success((isJSON) ? result : midget.responseText); // Success
+				} else {
+					options.error ? options.error(midget.status) : _log("Dough AJAX error: Returned " + midget.status + ". You should handle this error with a .error method", true);
+				}
+			}
+		};
 
-        if (typeof options.data === "object" && options.type !== "get") {
-            data = _generate_http_parameters(options.data);
-        }
+		if (typeof options.data === "object" && options.type !== "get") {
+			data = _generate_http_parameters(options.data);
+		}
 
-        midget.send(data);
-    };
+		midget.send(data);
+	};
 	// Programmatically creating HTTP-matching methods
 	var httpMethods = ["get", "post", "put", "delete"],
-        httpMethodNames = ["get", "post", "put", "del"];
+		httpMethodNames = ["get", "post", "put", "del"];
 
 	for (var i = 0, len = httpMethods.length; i < len; i++) {
 		(function(name, method) {
@@ -613,50 +613,50 @@
 	};
 
 	/* Sets a method to be executed upon the finish of a CSS transition */
-    doughFn.transitionEnd = function(property, items, callback) {
-        // Setting up transition end handling method
-        !_didSetupTransitionEnd && _setup_transition_end_listener();
+	doughFn.transitionEnd = function(property, items, callback) {
+		// Setting up transition end handling method
+		!_didSetupTransitionEnd && _setup_transition_end_listener();
 
-        // Actual callback
-        property = _synthasize_property(property);
+		// Actual callback
+		property = _synthasize_property(property);
 
-        _tCrumbs++;
-        var transition = {
-            id: _tCrumbs,
-            finished: 0,
-            required: items.length || 1,
-            callback: callback
-        };
-        
-        // Marking items
-        if (!items.length) {
-            items._tCrumb = _tCrumbs;
-        } else {
-            for (var i = 0; i < items.length; i++) {
-                items[i]._tCrumb = _tCrumbs;
-            }
-        }
-        
-        _transitions[_tCrumbs] = transition;
+		_tCrumbs++;
+		var transition = {
+			id: _tCrumbs,
+			finished: 0,
+			required: items.length || 1,
+			callback: callback
+		};
+		
+		// Marking items
+		if (!items.length) {
+			items._tCrumb = _tCrumbs;
+		} else {
+			for (var i = 0; i < items.length; i++) {
+				items[i]._tCrumb = _tCrumbs;
+			}
+		}
+		
+		_transitions[_tCrumbs] = transition;
 
-        if (!_transitionProperties[property]) {
-            _transitionProperties[property] = 0;
-        }
-        _transitionProperties[property]++;
-    };
+		if (!_transitionProperties[property]) {
+			_transitionProperties[property] = 0;
+		}
+		_transitionProperties[property]++;
+	};
 
-    /* Sets a method to be executed upon the finish of a CSS animation */
-    doughFn.animationEnd = function(name, required, callback) {
-        // Setting up animation end handling method
-        !_didSetupAnimationEnd && _setup_animation_end_listener();
-        
-        _animation = {
-            name: name,
-            finished: 0,
-            required: required,
-            callback: callback
-        };
-    };
+	/* Sets a method to be executed upon the finish of a CSS animation */
+	doughFn.animationEnd = function(name, required, callback) {
+		// Setting up animation end handling method
+		!_didSetupAnimationEnd && _setup_animation_end_listener();
+		
+		_animation = {
+			name: name,
+			finished: 0,
+			required: required,
+			callback: callback
+		};
+	};
 
 	// Trigger function ($)
 	function doughFn(selector) {
@@ -664,5 +664,5 @@
 	}
 
 	window['$'] = (!window['$']) ? doughFn : window['$'];
-    window['Dough'] = doughFn;
+	window['Dough'] = doughFn;
 })(window);
