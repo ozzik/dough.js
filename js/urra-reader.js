@@ -104,7 +104,7 @@ var Pager = {};
             }, 500);
         });
         _pager.on("mouseout", function(e) {
-            if (e.toElement.className.indexOf("ur-pager") !== -1) { return; }
+            if (!e.toElement || e.toElement.className.indexOf("ur-pager") !== -1) { return; }
 
             $(this).removeClass("active");
 
