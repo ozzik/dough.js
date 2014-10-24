@@ -1,4 +1,4 @@
-/*! Dough.js - by Oz Pinhas @ 2013 (Version 0.1.2)
+/*! Dough.js - by Oz Pinhas @ 2014 (Version 0.1.3)
  *  https://ozzik.github.com/dough.js
  *  Licensed under the MIT license. */
 (function(w) {
@@ -200,7 +200,7 @@
 				delete _transitions[e.target._tCrumb];
 				_transitionProperties[e.property]--;
 
-				transition.callback && transition.callback();
+				transition.callback && setTimeout(transition.callback, transition.delay || 0);;
 			}
 		});
 
@@ -216,7 +216,11 @@
 
 			if (_animation.finished == _animation.required) {
 				_animation.name = null;
-				_animation.callback();
+				if (!_animation.delay) {
+					_animation.callback();
+				} else {
+					setTimeout(_animation.callback, _animation.delay);
+				}
 				_animation = {};
 			}
 		});
@@ -323,6 +327,8 @@
 			_each(this, function(e) {
 				e.style[_renderEngine + "Transform"] = transformFn;
 			}, index);
+
+			return this;
 		},
 
 		/* Sets a CSS translate3d method to the collection's elements */
@@ -330,6 +336,8 @@
 			_each(this, function(e) {
 				e.style[_renderEngine + "Transform"] = "translate3d(" + (x || 0) + "px," + (y || 0) + "px," + (z || 0) + "px)";
 			}, index);
+
+			return this;
 		},
 
 		/* ==== Structure methods ==== */
@@ -613,7 +621,7 @@
 	};
 
 	/* Sets a method to be executed upon the finish of a CSS transition */
-	doughFn.transitionEnd = function(property, items, callback) {
+	doughFn.transitionEnd = function(property, items, callback, delay) {
 		// Setting up transition end handling method
 		!_didSetupTransitionEnd && _setup_transition_end_listener();
 
@@ -625,7 +633,8 @@
 			id: _tCrumbs,
 			finished: 0,
 			required: items.length || 1,
-			callback: callback
+			callback: callback,
+			delay: delay
 		};
 		
 		// Marking items
@@ -646,7 +655,7 @@
 	};
 
 	/* Sets a method to be executed upon the finish of a CSS animation */
-	doughFn.animationEnd = function(name, required, callback) {
+	doughFn.animationEnd = function(name, required, callback, delay) {
 		// Setting up animation end handling method
 		!_didSetupAnimationEnd && _setup_animation_end_listener();
 		
@@ -654,7 +663,8 @@
 			name: name,
 			finished: 0,
 			required: required,
-			callback: callback
+			callback: callback,
+			delay: delay
 		};
 	};
 
