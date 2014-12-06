@@ -1,4 +1,4 @@
-/*! Dough.js - by Oz Pinhas @ 2014 (Version 0.1.4)
+/*! Dough.js - by Oz Pinhas @ 2014 (Version 0.1.5)
  *  https://ozzik.github.com/dough.js
  *  Licensed under the MIT license. */
 (function(w) {
@@ -17,6 +17,9 @@
 			AnimationEnd: [ "webkit" ],
 			TransitionEnd: [ "webkit" ]
 		}, // Browser engines which require prefixed event names
+        _PREFIXED_PROPERTIES = {
+            transform: [ "webkit", "ms" ]
+        }, // Browser engines which require prefixed CSS property names
 		_transitions = {}, // Queued transition callback data for transition end events
 		_transitionProperties = {}, // Names of queued transition properties
 		_tCrumbs = 1, // Unique ID for transitions
@@ -175,8 +178,8 @@
 
 	/* Prettifies a given CSS property name according with possible required vendor prefix */
 	function _synthasize_property(property) {
-		if (property === "transform") {
-			return "-" + _renderEngine + "-transform";
+		if (_PREFIXED_PROPERTIES[property] && _PREFIXED_PROPERTIES[property].indexOf(_renderEngine) !== -1) {
+            return "-" + _renderEngine + "-" + property;
 		} else {
 			return property;
 		}
