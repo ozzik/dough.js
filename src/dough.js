@@ -1,4 +1,4 @@
-/*! Dough.js - by Oz Pinhas @ 2014 (Version 0.1.3)
+/*! Dough.js - by Oz Pinhas @ 2014 (Version 0.1.4)
  *  https://ozzik.github.com/dough.js
  *  Licensed under the MIT license. */
 (function(w) {
@@ -25,6 +25,7 @@
 		_didSetupAnimationEnd;
 	// Shared + others
 	var _renderEngine,
+		_renderEngineStylePrefix,
 		_device = {
 			isWebkit: false,
 			isGecko: false,
@@ -150,20 +151,26 @@
 	/* Identifies the browser's rendering engine */
 	function _detect_engine() {
 		var ua = navigator.userAgent.toLowerCase(),
-			value = "";
+			engine = "";
 
 		if (ua.indexOf("webkit") !== -1) {
-			value = "webkit";
+			engine = "webkit";
+			stylePrefix = "webkit";
 			_device.isWebkit = true;
 		} else if (ua.indexOf("trident") !== -1) {
-			value = "ms";
+			engine = "ms";
+			stylePrefix = "ms";
 			_device.isTrident = true;
 		} else if (ua.indexOf("firefox") !== -1) {
-			value = "moz";
+			engine = "moz";
+			stylePrefix = "Moz";
 			_device.isGecko = true;
 		}
 
-		return value;
+		return {
+			engine: engine,
+			stylePrefix: stylePrefix
+		};
 	}
 
 	/* Prettifies a given CSS property name according with possible required vendor prefix */
@@ -325,7 +332,7 @@
 		/* Sets the CSS transform property of the collection's elements */
 		transform: function(transformFn, index) {
 			_each(this, function(e) {
-				e.style[_renderEngine + "Transform"] = transformFn;
+				e.style[_renderEngineStylePrefix + "Transform"] = transformFn;
 			}, index);
 
 			return this;
@@ -334,7 +341,7 @@
 		/* Sets a CSS translate3d method to the collection's elements */
 		translate: function(x, y, z, index) {
 			_each(this, function(e) {
-				e.style[_renderEngine + "Transform"] = "translate3d(" + (x || 0) + "px," + (y || 0) + "px," + (z || 0) + "px)";
+				e.style[_renderEngineStylePrefix + "Transform"] = "translate3d(" + (x || 0) + "px," + (y || 0) + "px," + (z || 0) + "px)";
 			}, index);
 
 			return this;
@@ -526,7 +533,10 @@
 		}
 	}
 
-	_renderEngine = _detect_engine();
+	var _renderEngineInfo = _detect_engine(); // Temporary holder
+
+	_renderEngine = _renderEngineInfo.engine;
+	_renderEngineStylePrefix = _renderEngineInfo.stylePrefix;
 	_device.isTouch = "ontouchstart" in document;
 
 	_eventPointerStart = _device.isTouch ? "touchstart" : "mousedown";
