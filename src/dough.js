@@ -1,4 +1,4 @@
-/*! Dough.js - by Oz Pinhas @ 2015 (Version 0.1.6)
+/*! Dough.js - by Oz Pinhas @ 2015 (Version 0.1.7)
  *  https://ozzik.github.com/dough.js
  *  Licensed under the MIT license. */
 (function(w) {
@@ -197,7 +197,8 @@
 	/* Attaches an event listener for handling the finish of a CSS transition */
 	function _setup_transition_end_listener() {
 		document.body.addEventListener(_synthasize_event("TransitionEnd"), function(e) {
-			if (!_transitionProperties[e.propertyName]) { return; } // Property that wasn't selected for detection
+			var propertyName = (e.propertyName.indexOf(_renderEngine) !== -1) ? e.propertyName.substr(_renderEngine.length + 2) : e.propertyName;
+			if (!_transitionProperties[propertyName]) { return; } // Property that wasn't selected for detection
 
 			// Finding queued transition
 			var transition = _transitions[e.target._tCrumb];
@@ -208,7 +209,7 @@
 			if (transition.finished == transition.required) {
 				// Marking transition as completed
 				delete _transitions[e.target._tCrumb];
-				_transitionProperties[e.property]--;
+				_transitionProperties[propertyName]--;
 
 				transition.callback && setTimeout(transition.callback, transition.delay || 0);;
 			}
@@ -639,7 +640,7 @@
 		!_didSetupTransitionEnd && _setup_transition_end_listener();
 
 		// Actual callback
-		property = _synthasize_property(property);
+		// property = _synthasize_property(property);
 
 		_tCrumbs++;
 		var transition = {
